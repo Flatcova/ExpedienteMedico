@@ -2,6 +2,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8">
+    <link rel="shortcut icon" href="../images/ExpedienteMedico-logo.png">
     <title>Expediente Medico</title>
     <!-- CSS -->
   <!-- Material Design Lite -->
@@ -9,22 +10,14 @@
     <link rel="stylesheet" href="https://code.getmdl.io/1.3.0/material.indigo-pink.min.css">
   <!-- Local Styles -->
     <link rel='stylesheet' href='../stylesheets/style.css' />
-
   </head>
   <body>
-    <div class="mdl-layout mdl-js-layout mdl-layout--fixed-drawer">
-      <header class="mdl-layout__header">
-        <% include ./partials/navbar-infosearch %>
-      </header>
-      <% include ./partials/navbar-patients %>
+    <div class="layout-transparent mdl-layout mdl-js-layout">
       <main class="mdl-layout__content">
         <%- body -%>
-
-        <% include ./partials/footer %>
       </main>
     </div>
-    <!-- Scripts -->
-  <!-- Material Design Lite -->
-  <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script defer src="https://code.getmdl.io/1.3.0/material.min.js"></script>
+    <script src="../javascripts/view.js"></script>
   </body>
 </html>
