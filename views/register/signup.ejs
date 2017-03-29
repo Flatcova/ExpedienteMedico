@@ -7,7 +7,11 @@
           <h3>Registro</h3>
       </div>
       <div class="mdl-card__supporting-text">
-        <!-- Formulario va aqui -->
+        <div class="mdl-textfield mdl-js-textfield">
+          <input class="mdl-textfield__input" type="text" id="user" pattern="[A-Z,a-z, ]*">
+          <center><label class="mdl-textfield__label" for="user">User name</label></center>
+          <span class="mdl-textfield__error">Letters and spaces only</span>
+        </div>
       </div>
       <div class="mdl-card__actions mdl-card--border">
         <button type="button" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Registrarse
