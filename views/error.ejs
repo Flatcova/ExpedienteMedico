@@ -1,3 +1,17 @@
-<h1><%= message %></h1>
-<h2><%= error.status %></h2>
-<pre><%= error.stack %></pre>
+<%- layout('layout') %>
+
+<div class="mdl-card card--register_card">
+  <div class="mdl-card__title">
+    <h2 class="mdl-card__title-text">Error: <%= error.status %></h2>
+  </div>
+  <div class="mdl-card__media" style="background-color:transparent; text-align:center;">
+    <img src="../images/ExpedienteMedico-logo.png" width="15%" height="auto" border="0">
+    <p>Expediente Medico</p>
+  </div>
+  <div class="mdl-card__supporting-text">
+    <h2><%= message %></h2>
+    <pre>
+<%= error.stack %>
+    </pre>
+  </div>
+</div>

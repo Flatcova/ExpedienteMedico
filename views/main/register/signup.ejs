@@ -1,0 +1,99 @@
+<%- layout('layout') %>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--1-col mdl-cell--3-col-tablet mdl-cell--0-col-phone"></div>
+  <div class="mdl-cell mdl-cell--10-col mdl-cell--12-col-tablet">
+    <div class="mdl-card mdl-shadow--2dp through mdl-shadow--16dp card--register_card">
+      <div class="mdl-card__title card--position_center">
+        <h3>Registro</h3>
+      </div>
+      <div class="error_text">
+      <% if (errors.length > 0) { %>
+        <span class="mdl-chip mdl-chip--deletable">
+          <span class="mdl-chip__text"><%= errors %></span>
+        </span>
+        <% } %>
+        </div>
+        <form method="post" class="register_form">
+          <div class="mdl-card__supporting-text">
+            <h3>Datos del doctor</h3>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="text" id="name" pattern="[A-Z,a-z, ]*" name="name"></center>
+              <label class="mdl-textfield__label" for="name">Nombre</label>
+              <span class="mdl-textfield__error" for="name">solamente caracteres</span>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="email" id="email" name="email"></center>
+              <label class="mdl-textfield__label" for="email">correo</label>
+              <span class="mdl-textfield__error" for="email">verifica correo</span>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="password" id="password" pattern="^[a-zA-Z0-9]{6,}$" name="password"></center>
+              <label class="mdl-textfield__label" for="password">contraseña</label>
+              <span class="mdl-textfield__error" for="password">(Minimo 6 caracteres)</span>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="text" id="nombre_consultorio" pattern="^[A-Z,a-z, ]*" name="nombre_consultorio"></center>
+              <label class="mdl-textfield__label" for="nombre_consultorio">nombre del consultorio</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="text" id="especialidad" pattern="^[A-Z,a-z, ]*" name="especialidad"></center>
+              <label class="mdl-textfield__label" for="especialidad">especialidad</label>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="number" id="cedula_prof" pattern="^-?[0-9]*(\.[0-9]+)?" name="cedula_prof"></center>
+              <label class="mdl-textfield__label" for="cedula_prof">Cedula Profesional</label>
+              <span class="mdl-textfield__error" for="password">solamente digitos</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="number" id="cedula_esp" pattern="^-?[0-9]*(\.[0-9]+)?" name="cedula_esp"></center>
+              <label class="mdl-textfield__label" for="cedula_esp">Cedufla de Especialidad</label>
+              <span class="mdl-textfield__error" for="cedula_esp">solamente digitos</span>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="text" id="universidad" pattern="^[A-Z,a-z, ]*" name="universidad"></center>
+              <label class="mdl-textfield__label" for="universidad">Escuela de procedencia</label>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="text" id="domicilio" name="domicilio"></center>
+              <label class="mdl-textfield__label" for="domicilio">Direccion de consultorio</label>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="number" id="telefono" pattern="[789][0-9]{9}" name="telefono"></center>
+              <label class="mdl-textfield__label" for="telefono">telefono de contacto</label>
+              <span class="mdl-textfield__error" for="telefono">Solamente digitos</span>
+            </div>
+            <h3>Seccion para el asistente</h3>
+            <div class="drawer-separator"></div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="text" id="name_assis" pattern="[A-Z,a-z, ]*" name="name_assis"></center>
+              <label class="mdl-textfield__label" for="name_assis">Nombre de asistente</label>
+              <span class="mdl-textfield__error" for="name_assis">solamente caracteres</span>
+            </div>
+            <br>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="email" id="email_assis" name="email_assis"></center>
+              <label class="mdl-textfield__label" for="email_assis">correo de asistente</label>
+              <span class="mdl-textfield__error" for="email_assis">verifica correo</span>
+            </div>
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+              <center><input class="mdl-textfield__input" type="password" id="password_assis" pattern="^[a-zA-Z0-9]{6,}$" name="password_assis"></center>
+              <label class="mdl-textfield__label" for="password_assis">contraseña para asistente</label>
+              <span class="mdl-textfield__error" for="password_assis">(Minimo 6 caracteres)</span>
+            </div>
+          </div>
+          <div class="mdl-card__actions mdl-card--border">
+            <button type="submit" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Registrarse
+              <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    <div class="mdl-cell mdl-cell--1-col mdl-cell--3-col-tablet mdl-cell--0-col-phone"></div>
+  </div>

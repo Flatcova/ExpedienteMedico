@@ -3,9 +3,12 @@
   background-color: #dcdcdc;
   margin: 8px 0;
 }
-
+.register_form{
+  width: 96%;
+    margin: 1em auto;
+    padding: 0em 0em 0em 0em;
+}
 .layout-transparent {
-/*background: url('../images/Background.jpg') center/cover;*/
   background-color: #eee;
 }
 .card--register_card{
@@ -14,6 +17,14 @@
 .card--position_center{
   align-self: center;
 }
+.error_text{
+  text-align: -webkit-center;
+}
+.error_text .mdl-chip{
+  background-color: hotpink;
+  color: ghostwhite;
+}
+
 * { box-sizing:border-box; }
 
 body {
@@ -27,11 +38,11 @@ hgroup {
 	max-resolution: res;in-top: 4em;
 }
 
-/*h1, h3 { font-weight: 300; }
+h1, h3 { font-weight: 300; }
 
 h1 { color: #636363; }
 
-h3 { color: #4a89dc; }*/
+h3 { color: #4a89dc; }
 
 form {
 	width: 380px;
@@ -249,4 +260,4 @@ footer img {
 
 footer img:hover { opacity: .83; }
 
-footer img:focus , footer a:focus { outline: none; }
+footer img:focus , footer a:focus { outline: none; }*/

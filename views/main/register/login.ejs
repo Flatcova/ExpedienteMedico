@@ -1,0 +1,30 @@
+<%- layout('layout') %>
+<hgroup>
+  <h1>Expediente Medico</h1>
+</hgroup>
+<div class="error_text">
+  <% if (login_error.length > 0) { %>
+  <span class="mdl-chip mdl-chip--deletable">
+    <span class="mdl-chip__text"><%= login_error %></span>
+  </span>
+  <% } %>
+</div>
+<form method="post">
+    <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+      <center><input class="mdl-textfield__input" type="email" id="email" name="email"></center>
+      <label class="mdl-textfield__label" for="email">correo</label>
+      <span class="mdl-textfield__error" for="email">verifica correo</span>
+    </div>
+  <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
+    <center><input class="mdl-textfield__input" type="password" id="password" pattern="^[a-zA-Z0-9]{6,}$" name="password"></center>
+    <label class="mdl-textfield__label" for="password">contraseña</label>
+    <span class="mdl-textfield__error" for="password">(Minimo 6 caracteres)</span>
+  </div>
+  <button type="submit" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Iniciar sesion
+    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+  </button>
+  <center><a href="/">Regresar a pagina principal</a></center>
+</form>
+<footer><img src="../images/ExpedienteMedico-logo.png">
+  <p>Aun no formas parte? <a href="/signup">Registrate</a> aqui!</p>
+</footer>
