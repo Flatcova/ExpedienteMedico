@@ -1,9 +1,270 @@
 <%- layout('layout') %>
+<div class="mdl-grid">
+  <div class="mdl-cell mdl-cell--3-col">
+    <form class= "tamañoF_form">
+      <H3>Citas Previas</H3>
+      <button class="mdl-button mdl-js-button mdl-button--fab mdl-js-ripple-effect mdl-button--colored" align="right">
+      <i class="material-icons">add</i>
+      </button>
+      <BR><BR><BR><BR><BR><BR><BR><BR><BR>
+      <a href="/logout">
+        <button type="button" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Cerrar sesion
+          <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
+        </button>
+      </a>
+    </form>
+  </div>
 
-<h1>Asistente</h1>
 
-<a href="/logout">
-  <button type="button" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Cerrar sesion
-    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-  </button>
-</a>
+
+  <div class="mdl-cell mdl-cell--9-col">
+    <H1 align="center"> Nuevo Registro </H1>
+
+    <form class= "tamañoF_form">
+      <div class="mdl-textfield mdl-js-textfield">
+  		<center><input class="mdl-textfield__input" type="text" id="fecha"></center>
+  		<label class="mdl-textfield__label" for="fecha">Fecha</label>
+  		</div><BR>
+
+  		<div class="mdl-textfield mdl-js-textfield">
+  		<center><input class="mdl-textfield__input" type="text" id="name"></center>
+  		<label class="mdl-textfield__label" for="name">Nombre</label>
+  		</div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form" >
+      <center><input class="mdl-textfield__input " type="number" pattern="-?[0-9]*(\.[0-9]+)?" width="10px" id="age" ></center>
+      <label class="mdl-textfield__label" for="age">Edad</label>
+      <span class="mdl-textfield__error">Esto no es un número</span>
+      </div> <BR>
+
+  		<div class="mdl-textfield mdl-js-textfield">
+  		<center><input class="mdl-textfield__input" type="text" id="fechaN"></center>
+  		<label class="mdl-textfield__label" for="fechaN">Fecha de Nacimiento</label>
+  		</div>
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="email" id="email"></center>
+      <label class="mdl-textfield__label" for="email">Correo</label>
+      <span class="mdl-textfield__error">Verificar correo</span>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield">
+    	<center><input class="mdl-textfield__input" type="text" id="dom"></center>
+    	<label class="mdl-textfield__label" for="dom">Domicilio</label>
+    	</div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Tel.C">
+      <center><label class="mdl-textfield__label" for="Tel.C">Tel. casa</label></center>
+      <span class="mdl-textfield__error">Esto no es un número</span>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="Tel.Cel"></center>
+      <label class="mdl-textfield__label" for="Tel.Cel">Tel. Celular</label>
+      <span class="mdl-textfield__error">Esto no es un número</span>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="ES"></center>
+      <label class="mdl-textfield__label" for="ES">Estado Civil</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="Ocupación"></center>
+      <label class="mdl-textfield__label" for="Ocupación">Ocupación</label>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="DomL"></center>
+      <label class="mdl-textfield__label" for="DomL">Dom. y Lugar de trabajo</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="TelT"></center>
+      <label class="mdl-textfield__label" for="TelT">Tel.</label>
+      <span class="mdl-textfield__error">Esto no es un número</span>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="NombreE"></center>
+      <label class="mdl-textfield__label" for="NombreE">Nombre del Esposo</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="number" pattern="-?[0-9]*(\.[0-9]+)?" id="ageE" ></center>
+      <label class="mdl-textfield__label" for="ageE">Edad</label>
+      <span class="mdl-textfield__error">Esto no es un número</span>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="OcupaciónE"></center>
+      <label class="mdl-textfield__label" for="OcupaciónE">Ocupación</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="domE"></center>
+      <label class="mdl-textfield__label" for="domE">Domicilio</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" pattern="-?[0-9]*(\.[0-9]+)?" id="TelE"></center>
+      <label class="mdl-textfield__label" for="TelE">Tel.</label>
+      <span class="mdl-textfield__error">Esto no es un número</span>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoAHF_form">
+      <center><input class="mdl-textfield__input" type="text" id="Recomendado"></center>
+      <label class="mdl-textfield__label" for="Recomendado">Recomendado Por</label>
+      </div><br>
+      <div class="mdl-textfield mdl-js-textfield tamañoAHF_form">
+      <center><input class="mdl-textfield__input" type="text" id="AHF"></center>
+      <label class="mdl-textfield__label" for="AHF">AHF</label>
+      </div><br>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="AGO"></center>
+      <label class="mdl-textfield__label" for="AGO">AGO. M</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="R"></center>
+      <label class="mdl-textfield__label" for="R">R</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="IVSA"></center>
+      <label class="mdl-textfield__label" for="IVSA">IVSA</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="G"></center>
+      <label class="mdl-textfield__label" for="G">G</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="P"></center>
+      <label class="mdl-textfield__label" for="P">P</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="C"></center>
+      <label class="mdl-textfield__label" for="C">C</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="A"></center>
+      <label class="mdl-textfield__label" for="A">A</label>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="FUC."></center>
+      <label class="mdl-textfield__label" for="FUC.">FUC.</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield">
+      <center><input class="mdl-textfield__input" type="text" id="PesoH"></center>
+      <label class="mdl-textfield__label" for="PesoH">Peso Hijos</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="PPF"></center>
+      <label class="mdl-textfield__label" for="PPF">PPF</label>
+      </div><br>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="FUM"></center>
+      <label class="mdl-textfield__label" for="FUM">FUM</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="Dismenorrea"></center>
+      <label class="mdl-textfield__label" for="Dismenorrea">Dismenorrea</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="Dispareunia"></center>
+      <label class="mdl-textfield__label" for="Dispareunia">Dispareunia</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="Sangrado"></center>
+      <label class="mdl-textfield__label" for="Sangrado">Sangrado Postcoito</label>
+      </div>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="DOC"></center>
+      <label class="mdl-textfield__label" for="DOC">DOC</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="Mamografia"></center>
+      <label class="mdl-textfield__label" for="Mamografia">Mamografía</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoCel_form">
+      <center><input class="mdl-textfield__input" type="text" id="Sangre"></center>
+      <label class="mdl-textfield__label" for="Sangre">Tipo de Sangre</label>
+    </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="Micciones"></center>
+      <label class="mdl-textfield__label" for="Micciones">Micciones</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="Nicturia"></center>
+      <label class="mdl-textfield__label" for="Nicturia">Nicturia</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="Urgencia"></center>
+      <label class="mdl-textfield__label" for="Urgencia">Urgencia</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="Iurgencia"></center>
+      <label class="mdl-textfield__label" for="Iurgencia">inc. urgencias</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="Tenesmo"></center>
+      <label class="mdl-textfield__label" for="Tenesmo">Tenesmo</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="IUE"></center>
+      <label class="mdl-textfield__label" for="IUE">IUE</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoE_form">
+      <center><input class="mdl-textfield__input" type="text" id="Disuria"></center>
+      <label class="mdl-textfield__label" for="Disuria">Disuria</label>
+      </div><br>
+      <div class="mdl-textfield mdl-js-textfield tamañoAHF_form">
+      <center><input class="mdl-textfield__input" type="text" id="APP"></center>
+      <label class="mdl-textfield__label" for="APP">APP</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield tamañoPEEA_form">
+      <center><input class="mdl-textfield__input" type="text" id="PEEA"></center>
+      <label class="mdl-textfield__label" for="PEEA">PEEA</label>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield ">
+      <center><input class="mdl-textfield__input" type="text" id="PP"></center>
+      <label class="mdl-textfield__label" for="PP">Exp. Física   PP</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield ">
+      <center><input class="mdl-textfield__input" type="text" id="Vagina"></center>
+      <label class="mdl-textfield__label" for="Vagina">Vagina</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield ">
+      <center><input class="mdl-textfield__input" type="text" id="Cervix"></center>
+      <label class="mdl-textfield__label" for="Cervix">Cervix</label>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield ">
+      <center><input class="mdl-textfield__input" type="text" id="Utero"></center>
+      <label class="mdl-textfield__label" for="Utero">Útero</label>
+      </div>
+      <div class="mdl-textfield mdl-js-textfield ">
+      <center><input class="mdl-textfield__input" type="text" id="Ovarios"></center>
+      <label class="mdl-textfield__label" for="Ovarios">Ovarios</label>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoPEEA_form">
+      <center><input class="mdl-textfield__input" type="text" id="GM"></center>
+      <label class="mdl-textfield__label" for="GM">GM</label>
+      </div><BR>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoAHF_form">
+      <textarea class="mdl-textfield__input" type="text" rows= "3" id="Comentarios" ></textarea>
+      <label class="mdl-textfield__label" for="Comentarios">Comentarios</label>
+      </div><br>
+
+      <div class="mdl-textfield mdl-js-textfield tamañoAHF_form">
+      <textarea class="mdl-textfield__input" type="text" rows= "3" id="Tratamiento" ></textarea>
+      <label class="mdl-textfield__label" for="Tratamiento">Tratamiento</label>
+      </div>
+
+  </form>
+
+    <center><button  class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect" >
+      Guardar
+    </button></center>
+
+  </div>
+
+</div>
