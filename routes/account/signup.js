@@ -49,7 +49,7 @@ router.post('/', function(req, res, next){
 		},
     function(doctor){
 			var newAssis = new Assistant();
-			newAssis.profile.doctor = user._id;
+			newAssis.profile.doctor = doctor._id;
       newAssis.profile.nombre = req.body.name_assis;
       newAssis.profile.correo = req.body.email_assis;
       newAssis.profile.contrasena = newAssis.generateHash(req.body.password_assis);

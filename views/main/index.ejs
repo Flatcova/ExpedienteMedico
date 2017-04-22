@@ -1,20 +1,29 @@
 <%- layout('layout') %>
-<hgroup>
-  <h1>Expediente Medico</h1>
-</hgroup>
-<form>
-  <hgroup>
-    <h5>Iniciar Sesion</h5>
-  </hgroup>
-  <a href="/doctor-login">
-  <button type="button" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Doctor
-    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-  </button></a>
-  <a href="/assistant-login">
-  <button type="button" class="button buttonBlue mdl-js-button mdl-js-ripple-effect">Asistente
-    <div class="ripples buttonRipples"><span class="ripplesCircle"></span></div>
-  </button></a>
-</form>
-<footer><img src="../images/ExpedienteMedico-logo.png">
-  <p>Aun no formas parte? <a href="/signup">Registrate</a> aqui!</p>
-</footer>
+<div class="container">
+  <div class="row center_vertical">
+    <div class="col s12 m6 offset-m3">
+      <div class="card white darken-1 medium">
+        <div class="card-content black-text center-align">
+          <span class="card-title">Expediente Medico</span>
+          <img src="images/ExpedienteMedico-logo.png" style="height:150px;">
+          <p>Bienvenido al nuevo sistema de registro y mantenimiento de expedientes medicos.
+            Tu nos brindas la informacion y nosotros la organizamos por ti.
+          </p>
+        </div>
+        <div class="card-action center-align">
+          <p style="margin-top:0;">selecciona el tipo de usuario que eres</p>
+          <a href="/doctor-login" class="left" style="margin-left:10%;">
+            <button class="btn waves-effect waves-light center-align" type="button">Doctor
+              <i class="material-icons right">assignment_ind</i>
+            </button>
+          </a>
+          <a href="/assistant-login" class="right">
+            <button class="btn waves-effect waves-light center-align" type="button">Asistente
+              <i class="material-icons right">assistant</i>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
