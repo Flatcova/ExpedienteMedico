@@ -23,6 +23,7 @@ var pacienteSchema = Schema({
           recomendado: String,
 	},
   consultas: [{
+		consulta: { type: Schema.Types.ObjectId, ref: 'Consulta' },
 	}]
 });
 

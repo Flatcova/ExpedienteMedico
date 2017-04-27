@@ -1,0 +1,64 @@
+<%- layout('layout') %>
+<main>
+  <ul id="slide-out"class="side-nav fixed">
+    <li>
+      <div class="userView">
+        <div class="background">
+          <img src="images/doc-img.jpg" >
+        </div>
+        <a href="/"><img class="circle" src="images/doc-pic.jpg"></a>
+        <a href="/"><span class="white-text name" style="font-weight:bold;"><%= user.profile.nombre %></span></a>
+        <a href="/"><span class="white-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
+      </div>
+    </li>
+    <li><a href="/doctor"><i class="material-icons">settings</i>Configuración</a></li>
+    <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre %></a></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
+    <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
+    <% for(var i=0; i < Consultas.length ; i++) { %>
+    <li class="collection-item">
+      <span class="title">Consulta del: <%= moment(Consultas[i].consulta.diagnostico.date).format("DD-MMMM-YYYY") %></span>
+      <a href="/doctor/<%= Paciente._id %>/<%= Consultas[i].consulta._id %>" class="secondary-content"><i class="material-icons">forward</i></a>
+    </li>
+    <% } %>
+  </ul>
+  <nav>
+    <div class="nav-wrapper" style="background-color:#26a69a;">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo"><img style="height:auto; width:8%;" src="images/navbar-logo.png"> Expediente Medico</a>
+      <div class="input-field right">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col s12 m10 offset-m1">
+      <div class="card white darken-1">
+        <div class="card-content black-text center-align">
+          <form method="post">
+            <div class="row">
+              <h3>Nueva Consulta</h3>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <input id="rfc" type="text" pattern="[A-Z,a-z, ]*" name="rfc" class="validate">
+                <label for="rfc" data-error="Solamente caracteres">Entrada 1</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="rfc2" type="text" pattern="[A-Z,a-z, ]*" name="rfc2" class="validate">
+                <label for="rfc2">Entrada 2</label>
+              </div>
+
+              <button class="btn waves-effect waves-light" type="submit">Terminar Consulta
+                <i class="material-icons left">assignment_turned_in</i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

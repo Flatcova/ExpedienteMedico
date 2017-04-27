@@ -18,6 +18,7 @@ var assis_login = require('./routes/account/assis_login');
 var signup = require('./routes/account/signup');
 var logout = require('./routes/account/logout');
 var doctor = require('./routes/doctor/index');
+var nueva_consulta = require('./routes/doctor/index');
 var assistant = require('./routes/assistant/index');
 
 var app = express();
@@ -62,6 +63,7 @@ app.use('/signup', signup);
 app.use('/doctor-login', doc_login);
 app.use('/assistant-login', assis_login);
 app.use('/doctor', express.static(__dirname + '/public'), doctor);
+app.use('/doctor/:id', express.static(__dirname + '/public'), nueva_consulta);
 app.use('/assistant', assistant);
 app.use('/logout', logout);
 
