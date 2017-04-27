@@ -61,7 +61,7 @@ app.use('/', index);
 app.use('/signup', signup);
 app.use('/doctor-login', doc_login);
 app.use('/assistant-login', assis_login);
-app.use('/doctor', doctor);
+app.use('/doctor', express.static(__dirname + '/public'), doctor);
 app.use('/assistant', assistant);
 app.use('/logout', logout);
 

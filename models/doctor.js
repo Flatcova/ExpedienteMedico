@@ -16,7 +16,13 @@ var doctorSchema = Schema({
 					domicilio : String,
 					telefono : {type:Number, unique:true},
 					doc : {type:Boolean, default: true},
-	}
+	},
+	pacientes:[{
+		paciente: { type: Schema.Types.ObjectId, ref: 'Paciente' },
+	}],
+	asistentes:[{
+		asistente: { type: Schema.Types.ObjectId, ref: 'Assistant' },
+	}]
 });
 
 // methods ======================

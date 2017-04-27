@@ -49,11 +49,17 @@ router.post('/', function(req, res, next){
 		},
     function(doctor){
 			var newAssis = new Assistant();
+      doctor.asistentes.push({
+        asistente: newAssis._id
+      });
 			newAssis.profile.doctor = doctor._id;
       newAssis.profile.nombre = req.body.name_assis;
       newAssis.profile.correo = req.body.email_assis;
       newAssis.profile.contrasena = newAssis.generateHash(req.body.password_assis);
 
+      doctor.save(function(err){
+        if (err) next(err);
+      });
 			newAssis.save(function(err, assistant){
         console.log("Asistente : "+assistant);
         console.log("Doctor : "+doctor);

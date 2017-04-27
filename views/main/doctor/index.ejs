@@ -1,42 +1,121 @@
 <%- layout('layout') %>
 <main>
-<ul class="side-nav fixed">
-<li>
-  <div class="userView">
-    <div class="background">
-      <img src="images/doc-img.jpg" >
+  <ul id="slide-out"class="side-nav fixed">
+    <li>
+      <div class="userView">
+        <div class="background">
+          <img src="images/doc-img.jpg" >
+        </div>
+        <a href="#!user"><img class="circle" src="images/doc-pic.jpg"></a>
+        <a href="#!name"><span class="white-text name" style="font-weight:bold;"><%= user.profile.nombre %></span></a>
+        <a href="#!email"><span class="white-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
+      </div>
+    </li>
+    <li><a href="/doctor"><i class="material-icons">settings</i>Datos Personales</a></li>
+    <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Pacientes</a></li>
+    <% for(var i=0; i < Pacientes.length ; i++) { %>
+    <li class="collection-item">
+      <span class="title"><%= Pacientes[i].paciente.informacion.nombre %></span>
+      <a href="/doctor/<%= Pacientes[i].paciente._id %>" name="id_paciente" value="<%= Pacientes[i].paciente._id %>" class="secondary-content"><i class="material-icons">forward</i></a>
+    </li>
+    <% } %>
+  </ul>
+  <nav>
+    <div class="nav-wrapper" style="background-color:#26a69a;">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo"><img style="height:auto; width:8%;" src="images/navbar-logo.png"> Expediente Medico</a>
+      <div class="input-field right">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
     </div>
-    <a href="#!user"><img class="circle" src="images/doc-pic.jpg"></a>
-    <a href="#!name"><span class="white-text name" style="font-weight:bold;"><%= user.profile.nombre %></span></a>
-    <a href="#!email"><span class="white-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
-  </div>
-</li>
-<li><a href="#!"><i class="material-icons">settings</i>Datos Personales</a></li>
-<li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
-<li><div class="divider"></div></li>
-<li><a class="subheader" style="font-size:20px; text-align:center;">Pacientes</a></li>
-<li class="collection-item">
-  <span class="title">Nombre del paciente</span>
-  <a href="#!" class="secondary-content"><i class="material-icons">forward</i></a>
-</li>
-<li class="collection-item">
-  <span class="title">Nombre del paciente</span>
-  <a href="#!" class="secondary-content"><i class="material-icons">forward</i></a>
-</li>
-<li class="collection-item">
-  <span class="title">Nombre del paciente</span>
-  <a href="#!" class="secondary-content"><i class="material-icons">forward</i></a>
-</li>
-</ul>
-<nav>
-  <div class="nav-wrapper" style="background-color:#26a69a;">
-    <a href="/" class="brand-logo left"><img style="height:auto; width:8%;" src="images/navbar-logo.png"> Expediente Medico</a>
-    <div class="input-field right">
-      <input id="search" type="search" required>
-      <label class="label-icon" for="search"><i class="material-icons">search</i></label>
-      <i class="material-icons">close</i>
+  </nav>
+  <div class="row">
+    <div class="col s12 m10 offset-m1">
+      <div class="card white darken-1">
+        <div class="card-content black-text center-align">
+          <form method="post">
+            <div class="row">
+              <h3>Datos Personales</h3>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <input id="name_wife" type="text" pattern="[A-Z,a-z, ]*" name="name_wife" class="validate" value="<%= user.profile.nombre %>" disabled>
+                <label for="name_wife" data-error="Solamente caracteres">Nombre Completo</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">email</i>
+                <input id="email" type="email" name="email" class="validate" value="<%= user.profile.correo %>" disabled>
+                <label for="email" data-error="Verifica tu correo" data-success="Correo confirmado">Correo</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">security</i>
+                <input id="password" type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_-])(?=\S+$).{8,}$" name="password" class="validate" value="<%= user.profile.contrasena %>" disabled>
+                <label for="password" data-error="Minimo 8 caracteres, 1 mayuscula, y un caracter especial" data-success="Contraseña asignada">Contraseña</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">text_format</i>
+                <input id="nombre_consultorio" value="<%= user.profile.nombre_consultorio %>" type="text" pattern="^[A-Z,a-z, ]*" name="nombre_consultorio" class="validate">
+                <label for="nombre_consultorio" data-error="Solamente caracteres">Nombre del consultorio</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">text_format</i>
+                <input id="especialidad" value="<%= user.profile.especialidad %>" type="text" pattern="^[A-Z,a-z, ]*" name="especialidad" class="validate">
+                <label for="especialidad" data-error="Solamente caracteres">Especialidades</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">work</i>
+                <input id="cedula_prof" value="<%= user.profile.cedula_prof %>" type="number" pattern="^-?[0-9]*(\.[0-9]+)?" name="cedula_prof" class="validate">
+                <label for="cedula_prof" data-error="Solamente números">Cedula Profesional</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">work</i>
+                <input id="cedula_esp" value="<%= user.profile.cedula_esp %>" type="number" pattern="^-?[0-9]*(\.[0-9]+)?" name="cedula_esp" class="validate">
+                <label for="cedula_esp" data-error="Solamente números">Cedula de Especialidad</label>
+              </div>
+              <div class="input-field col s12">
+                <i class="material-icons prefix">school</i>
+                <input id="universidad" value="<%= user.profile.universidad %>" type="text" pattern="^[A-Z,a-z, ]*" name="universidad" class="validate">
+                <label for="universidad" data-error="Solamente caracteres">Escuela de procedencia</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">place</i>
+                <input id="domicilio" value="<%= user.profile.domicilio %>" type="text" name="domicilio">
+                <label for="domicilio">Ubicacion del consultorio</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">phone</i>
+                <input id="telefono" value="<%= user.profile.telefono %>" type="number" pattern="[789][0-9]{9}" name="telefono" class="validate">
+                <label for="telefono" data-error="Verifica el numero">Telefono de contacto</label>
+              </div>
+            </div>
+
+            <h3>Datos del asistente</h3>
+            <div class="input-field col s12">
+              <i class="material-icons prefix">person</i>
+              <input id="name_assis" type="text" pattern="[A-Z,a-z, ]*" value="<%= Asistentes.asistente.profile.nombre %>" name="name_assis" class="validate" required>
+              <label for="name_assis" data-error="Solamente caracteres">Nombre Completo</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">email</i>
+              <input id="email_assis" type="email" name="email_assis" value="<%= Asistentes.asistente.profile.correo %>" class="validate" required>
+              <label for="email_assis" data-error="Verifica tu correo" data-success="Correo confirmado">Correo</label>
+            </div>
+            <div class="input-field col s6">
+              <i class="material-icons prefix">security</i>
+              <input id="password_assis" value="<%= Asistentes.asistente.profile.constrasena %>" type="password" pattern="^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[@#$%^&+=_-])(?=\S+$).{8,}$" name="password_assis" class="validate" required>
+              <label for="password_assis" data-error="Minimo 8 caracteres, 1 mayuscula, y un caracter especial" data-success="Contraseña asignada">Contraseña</label>
+            </div>
+
+              <button class="btn waves-effect waves-light" type="button">Guardar Paciente
+                <i class="material-icons left">person_add</i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   </div>
-</nav>
-<input type="date" class="datepicker">
 </main>

@@ -1,6 +1,6 @@
 <%- layout('layout') %>
 <main>
-  <ul class="side-nav fixed">
+  <ul id="slide-out" class="side-nav fixed">
     <li>
       <div class="userView" style="padding: 5px 0 32px 27px;">
         <div class="background">
@@ -13,39 +13,16 @@
     <li><a class="subheader" style="font-size:20px; text-align:center;">Citas</a></li>
 
     <ul class="collection">
+      <% for(var i=0; i < Pacientes.length ; i++) { %>
       <li class="collection-item">
         <div>
-          Nombre del paciente
+          Nombre: <%= Pacientes[i].paciente.informacion.nombre %>
           <a href="#!" class="secondary-content"><i class="material-icons">assignment_turned_in</i></a>
           <br>
-          hora:
-        </div>
-      </li>
 
-      <li class="collection-item">
-        <div>
-          Nombre del paciente
-          <a href="#!" class="secondary-content"><i class="material-icons">assignment_turned_in</i></a>
-          <br>
-          hora:
         </div>
       </li>
-      <li class="collection-item">
-        <div>
-          Nombre del paciente
-          <a href="#!" class="secondary-content"><i class="material-icons">assignment_turned_in</i></a>
-          <br>
-          hora:
-        </div>
-      </li>
-      <li class="collection-item">
-        <div>
-          Nombre del paciente
-          <a href="#!" class="secondary-content"><i class="material-icons">assignment_turned_in</i></a>
-          <br>
-          hora:
-        </div>
-      </li>
+      <% } %>
     </ul>
 
     <li><a href="#nueva_cita"><i class="material-icons">event</i>Agendar nueva cita</a></li>
@@ -54,21 +31,21 @@
   <div id="nueva_cita" class="modal">
     <div class="modal-content center-align">
       <h4>Nueva Cita</h4>
-      <form action="/cita" method="post">
+      <form action="/assistant/cita" method="post">
         <div class="input-field">
-          <input type="date" class="datepicker" id="date" required>
+          <input type="date" class="datepicker" id="date" name="dia_cita" required>
           <label for="date">Selecciona una fecha</label>
         </div>
         <div >
           <label for="time">Selecciona la hora</label>
-          <input type="text" class="timepicker" id="time" required>
+          <input type="text" class="timepicker" id="time" name="hora_cita" required>
         </div>
         <div class="input-field">
-          <select required>
+          <select required name="paciente">
             <option value="" disabled selected>Selecciona al paciente</option>
-            <option value="1">nombre del paciente</option>
-            <option value="2">nombre del paciente</option>
-            <option value="3">nombre del paciente</option>
+            <% for(var i=0; i < Pacientes.length ; i++) { %>
+            <option value="<%= Pacientes[i].paciente._id %>"><%= Pacientes[i].paciente.informacion.nombre %></option>
+            <% } %>
           </select>
         </div>
         <button class="btn waves-effect waves-light" type="submit">Agendar Cita
@@ -81,6 +58,7 @@
     </div>
   </div>
   <nav>
+    <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
     <div class="nav-wrapper" style="background-color:#26a69a;">
       <a href="/" class="brand-logo center"><img style="height:60px; width:auto;" src="images/navbar-logo.png"> Expediente Medico</a>
     </div>
@@ -91,6 +69,12 @@
         <div class="card-content black-text center-align">
           <form method="post">
             <div class="row">
+              <% if (err.length > 0) { %>
+                <blockquote class="error_text">
+                  <i class="material-icons prefix">error</i>
+                  <span><%= err %></span>
+                </blockquote>
+                <% } %>
               <h3>Nuevo Paciente</h3>
               <div class="input-field col s8">
                 <i class="material-icons prefix">person</i>
@@ -103,7 +87,7 @@
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">cake</i>
-                <input type="date" class="birthpicker" id="birth">
+                <input type="date" name="birth" class="birthpicker" id="birth">
                 <label for="birth">Fecha de Naciemiento</label>
               </div>
               <div class="input-field col s6">
@@ -118,15 +102,15 @@
               </div>
               <div class="input-field col s3">
                 <i class="material-icons prefix">phone</i>
-                <input id="telefono" type="tel" pattern="[789][0-9].{10,}$" name="telefono" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="telefono" type="number" pattern="[789][0-9].{10,}$" name="telefono" class="validate" placeholder="xxx-xxx-xxxx">
                 <label for="telefono" data-error="Verifica el numero">Telefono de casa</label>
               </div><div class="input-field col s3">
                 <i class="material-icons prefix">smartphone</i>
-                <input id="cellular" type="tel" pattern="[789][0-9].{10,}$" name="cellular" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="cellular" type="number" pattern="[789][0-9].{10,}$" name="cellular" class="validate" placeholder="xxx-xxx-xxxx">
                 <label for="cellular" data-error="Verifica el numero">Telefono celular</label>
               </div>
               <div class="input-field col s6">
-                <select>
+                <select name="civil">
                   <option value="" disabled selected>Estado Civil</option>
                   <option value="casada">Casada</option>
                   <option value="soltera">Soltera</option>
@@ -146,7 +130,7 @@
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">phone</i>
-                <input id="work_phone" type="tel" pattern="[789][0-9].{10,}$" name="work_phone" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="work_phone" type="number" pattern="[789][0-9].{10,}$" name="work_phone" class="validate" placeholder="xxx-xxx-xxxx">
                 <label for="work_phone" data-error="Verifica el numero">Telefono del trabajo</label>
               </div>
 
@@ -158,17 +142,17 @@
               </div>
               <div class="input-field col s4">
                 <input id="edad_men" type="number" name="edad_men" class="validate">
-                <label for="edad_men">Edad</label>
+                <label for="edad_men">Edad del esposo</label>
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">work</i>
                 <input id="men_work" type="text" pattern="[A-Z,a-z, ]*" name="men_work" class="validate">
-                <label for="men_work" data-error="Solamente caracteres">Ocupación</label>
+                <label for="men_work" data-error="Solamente caracteres">Ocupación del esposo</label>
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">phone</i>
-                <input id="men_phone" type="tel" pattern="[789][0-9].{10,}$" name="men_phone" class="validate" placeholder="xxx-xxx-xxxx">
-                <label for="men_phone" data-error="Verifica el numero">Telefono</label>
+                <input id="men_phone" type="number" pattern="[789][0-9].{10,}$" name="men_phone" class="validate" placeholder="xxx-xxx-xxxx">
+                <label for="men_phone" data-error="Verifica el numero">Telefono del esposo</label>
               </div>
 
               <div class="input-field col s12">

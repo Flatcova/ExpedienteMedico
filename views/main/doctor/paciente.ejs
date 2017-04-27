@@ -1,0 +1,137 @@
+<%- layout('layout') %>
+<main>
+  <ul id="slide-out"class="side-nav fixed">
+    <li>
+      <div class="userView">
+        <div class="background">
+          <img src="images/doc-img.jpg" >
+        </div>
+        <a href="#!user"><img class="circle" src="images/doc-pic.jpg"></a>
+        <a href="#!name"><span class="white-text name" style="font-weight:bold;"><%= user.profile.nombre %></span></a>
+        <a href="#!email"><span class="white-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
+      </div>
+    </li>
+    <li><a href="/doctor"><i class="material-icons">settings</i>Datos Personales</a></li>
+    <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
+    <li><div class="divider"></div></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
+    <% for(var i=0; i < Paciente.consultas.length ; i++) { %>
+    <li class="collection-item">
+      <span class="title"><%= Paciente.consultas[i].date %></span>
+      <a href="#" class="secondary-content"><i class="material-icons">forward</i></a>
+    </li>
+    <% } %>
+  </ul>
+  <nav>
+    <div class="nav-wrapper" style="background-color:#26a69a;">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo"><img style="height:auto; width:8%;" src="images/navbar-logo.png"> Expediente Medico</a>
+      <div class="input-field right">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col s12 m10 offset-m1">
+      <div class="card white darken-1">
+        <div class="card-content black-text center-align">
+          <form method="post">
+            <div class="row">
+              <h3>Informacion del Paciente</h3>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">person</i>
+                <input id="name_wife" type="text" pattern="[A-Z,a-z, ]*" name="name_wife" class="validate" value="<%= Paciente.informacion.nombre %>" disabled>
+                <label for="name_wife" data-error="Solamente caracteres">Nombre Completo</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="edad_wife" value="<%= Paciente.informacion.edad %>" type="number" name="edad_wife" class="validate">
+                <label for="edad_wife">Edad</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">cake</i>
+                <input value="<%= Paciente.informacion.cumpleanos %>" type="date" name="birth" class="birthpicker" id="birth">
+                <label for="birth">Fecha de Naciemiento</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">email</i>
+                <input value="<%= Paciente.informacion.correo %>" id="email" type="email" name="email" class="validate" required>
+                <label for="email" data-error="Verifica tu correo">Correo</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">place</i>
+                <input value="<%= Paciente.informacion.domicilio %>" id="place" type="text" name="place">
+                <label for="place">Domicilio</label>
+              </div>
+              <div class="input-field col s3">
+                <i class="material-icons prefix">phone</i>
+                <input id="telefono" value="<%= Paciente.informacion.telefono %>" type="number" pattern="[789][0-9].{10,}$" name="telefono" class="validate" placeholder="xxx-xxx-xxxx">
+                <label for="telefono" data-error="Verifica el numero">Telefono de casa</label>
+              </div><div class="input-field col s3">
+                <i class="material-icons prefix">smartphone</i>
+                <input id="cellular" value="<%= Paciente.informacion.celular %>" type="number" pattern="[789][0-9].{10,}$" name="cellular" class="validate" placeholder="xxx-xxx-xxxx">
+                <label for="cellular" data-error="Verifica el numero">Telefono celular</label>
+              </div>
+              <div class="input-field col s6">
+                <select name="civil">
+                  <option value="" disabled selected><%= Paciente.informacion.civil %></option>
+                  <option value="casada">Casada</option>
+                  <option value="soltera">Soltera</option>
+                  <option value="divorciada">Divorciada</option>
+                  <option value="viuda">Viuda</option>
+                </select>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">work</i>
+                <input id="work" value="<%= Paciente.informacion.trabajo %>" type="text" pattern="[A-Z,a-z, ]*" name="work" class="validate">
+                <label for="work" data-error="Solamente caracteres">Ocupación</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">place</i>
+                <input id="workplace" value="<%= Paciente.informacion.domicilio_trabajo %>" type="text" name="workplace">
+                <label for="workplace">Domicilio de trabajo</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">phone</i>
+                <input id="work_phone" value="<%= Paciente.informacion.telefono_trabajo %>" type="number" pattern="[789][0-9].{10,}$" name="work_phone" class="validate" placeholder="xxx-xxx-xxxx">
+                <label for="work_phone" data-error="Verifica el numero">Telefono del trabajo</label>
+              </div>
+
+              <!-- Esposo -->
+              <div class="input-field col s8">
+                <i class="material-icons prefix">person</i>
+                <input id="name_men" value="<%= Paciente.informacion.nombre_esposo %>" type="text" pattern="[A-Z,a-z, ]*" name="name_men" class="validate" required>
+                <label for="name_men" data-error="Solamente caracteres">Nombre del esposo</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="edad_men" value="<%= Paciente.informacion.edad_esposo %>" type="number" name="edad_men" class="validate">
+                <label for="edad_men">Edad del esposo</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">work</i>
+                <input id="men_work" value="<%= Paciente.informacion.trabajo_esposo %>" type="text" pattern="[A-Z,a-z, ]*" name="men_work" class="validate">
+                <label for="men_work" data-error="Solamente caracteres">Ocupación del esposo</label>
+              </div>
+              <div class="input-field col s6">
+                <i class="material-icons prefix">phone</i>
+                <input id="men_phone" value="<%= Paciente.informacion.telefono_esposo %>" type="number" pattern="[789][0-9].{10,}$" name="men_phone" class="validate" placeholder="xxx-xxx-xxxx">
+                <label for="men_phone" data-error="Verifica el numero">Telefono del esposo</label>
+              </div>
+
+              <div class="input-field col s12">
+                <i class="material-icons prefix">person</i>
+                <input id="recomendation" value="<%= Paciente.informacion.recomendado %>" type="text" pattern="[A-Z,a-z, ]*" name="recomendation" class="validate" required>
+                <label for="recomendation" data-error="Solamente caracteres">Recomendado por:</label>
+              </div>
+
+              <button class="btn waves-effect waves-light" type="button">Guardar Paciente
+                <i class="material-icons left">person_add</i>
+              </button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

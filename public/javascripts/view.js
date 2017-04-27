@@ -27,6 +27,6 @@ $('.datepicker').pickadate({
         dropdown: true,
         scrollbar: true
     });
-
+    $('.button-collapse').sideNav();
     $('select').material_select();
 });
