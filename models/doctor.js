@@ -20,6 +20,10 @@ var doctorSchema = Schema({
 	pacientes:[{
 		paciente: { type: Schema.Types.ObjectId, ref: 'Paciente' },
 	}],
+	citados:[{
+			paciente: { type: Schema.Types.ObjectId, ref: 'Paciente' },
+			fecha: {type:Date, unique:true}
+	}],
 	asistentes:[{
 		asistente: { type: Schema.Types.ObjectId, ref: 'Assistant' },
 	}]

@@ -2,16 +2,18 @@
 
 <div class="mdl-card card--register_card">
   <div class="mdl-card__title">
-    <h2 class="mdl-card__title-text">Error: <%= error.status %></h2>
+    <!-- <h2 class="mdl-card__title-text">Error: <%= error.status %></h2> -->
   </div>
   <div class="mdl-card__media" style="background-color:transparent; text-align:center;">
     <img src="../images/ExpedienteMedico-logo.png" width="15%" height="auto" border="0">
     <p>Expediente Medico</p>
   </div>
-  <div class="mdl-card__supporting-text">
-    <h2><%= message %></h2>
+  <div class="mdl-card__supporting-text center-align">
+    <!-- <h2><%= message %></h2>
     <pre>
 <%= error.stack %>
-    </pre>
+    </pre> -->
+    <h2>Lo sentimos, la pagina que intentaste ingresar no existe, o no tienes acceso</h2>
+    <a href="/" class="waves-effect waves-light btn">Ir a pagina principal</a>
   </div>
 </div>

@@ -14,12 +14,20 @@
 
     <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
     <li><div class="divider"></div></li>
-    <li><a class="subheader" style="font-size:20px; text-align:center;">Pacientes</a></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Pacientes citados hoy</a></li>
     <% for(var i=0; i < Pacientes.length ; i++) { %>
-    <li class="collection-item">
-      <span class="title"><%= Pacientes[i].paciente.informacion.nombre %></span>
-      <a href="/doctor/<%= Pacientes[i].paciente._id %>" name="id_paciente" value="<%= Pacientes[i].paciente._id %>" class="secondary-content"><i class="material-icons">forward</i></a>
-    </li>
+      <% if (moment().isSame(Pacientes[i].fecha, 'day')) {%>
+        <li class="collection-item">
+          <form action="/doctor/confirm" method="post">
+            <input type="hidden" name="posicion" value="<%= i %>">
+            <input type="hidden" name="id_paciente" value="<%= Pacientes[i].paciente._id %>">
+            <button type="submit" class="waves-effect waves-light btn secondary-content">
+                <i class="material-icons">forward</i>
+            </button>
+          </form>
+          <span class="center-align">Nombre: <%= Pacientes[i].paciente.informacion.nombre %></span>
+        </li>
+      <% } %>
     <% } %>
   </ul>
   <nav>
@@ -37,7 +45,7 @@
     <div class="col s12 m10 offset-m1">
       <div class="card white darken-1">
         <div class="card-content black-text center-align">
-          <form method="post">
+          <form method="put">
             <div class="row">
               <h3>Datos Personales</h3>
               <div class="input-field col s6">
@@ -109,7 +117,7 @@
               <label for="password_assis" data-error="Minimo 8 caracteres, 1 mayuscula, y un caracter especial" data-success="Contraseña asignada">Contraseña</label>
             </div>
 
-              <button class="btn waves-effect waves-light" type="button">Guardar Paciente
+              <button class="btn waves-effect waves-light" type="submit">Guardar Paciente
                 <i class="material-icons left">person_add</i>
               </button>
             </div>

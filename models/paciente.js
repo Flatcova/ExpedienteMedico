@@ -22,6 +22,8 @@ var pacienteSchema = Schema({
           telefono_esposo: {type:Number, unique:true},
           recomendado: String,
 	},
+	citas:[{
+	}],
   consultas: [{
 		consulta: { type: Schema.Types.ObjectId, ref: 'Consulta' },
 	}]

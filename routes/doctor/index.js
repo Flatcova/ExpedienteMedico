@@ -11,14 +11,16 @@ router.get('/', function(req, res, next) {
     Doctor
       .findById({ _id : req.user._id })
       .populate('pacientes.paciente')
+      .populate('citados.paciente')
       .populate('asistentes.asistente')
       .exec(function(err, Pacientes){
         console.log(Pacientes);
         console.log(Pacientes.asistentes[0].asistente.profile.nombre)
         if (err) next(err);
         return res.render('main/doctor/index', {
-          Pacientes: Pacientes.pacientes,
+          Pacientes: Pacientes.citados,
           Asistentes: Pacientes.asistentes[0],
+          moment: moment,
           err: req.flash('err')
           });
         });
@@ -29,13 +31,57 @@ router.get('/', function(req, res, next) {
   }
 });
 
+router.post('/confirm', function(req, res, next){
+  Doctor.findById(req.user.id , function(err, paciente){
+    if (err) next(err);
+    console.log(req.body.posicion);
+    paciente.citados.splice(req.body.posicion, 1);
+    console.log(paciente.citados);
+
+    paciente.save(function(err){
+      if (err) return next(err);
+      return res.redirect('/doctor/'+req.body.id_paciente);
+    });
+  });
+});
+
+router.put('/', function(req, res, next){
+  Doctor
+    .findById({ _id : req.user._id })
+    .populate('pacientes.paciente')
+    .populate('asistentes.asistente')
+    .exec(function(err, Doc){
+      if (err) next(err);
+
+      var consultorio = req.body.nombre_consultorio;
+      var especi = req.body.especialidad;
+      var prof = req.body.cedula_prof;
+      var esp = req.body.cedula_esp;
+      var univ = req.body.universidad;
+      var domi = req.body.domicilio;
+      var tel = req.body.telefono;
+
+      Doc.paciente.nombre_consultorio= consultorio || Doc.paciente.nombre_consultorio;
+      Doc.paciente.especialidad= especi || Doc.paciente.especialidad;
+      Doc.paciente.cedula_prof= prof || Doc.paciente.cedula_prof;
+      Doc.paciente.cedula_esp= esp || Doc.paciente.cedula_esp;
+      Doc.paciente.universidad= univ || Doc.paciente.universidad;
+      Doc.paciente.domicilio= domi || Doc.paciente.domicilio;
+      Doc.paciente.telefono= tel || Doc.paciente.telefono;
+
+      Doc.save(function(err){
+        if (err) next (err);
+        return res.redirect('/doctor');
+      });
+    });
+});
+
 router.get('/:id', function(req, res, next){
   if (req.user && req.user.profile.doc === true){
     Pacientes
       .findById(req.params.id)
       .populate('consultas.consulta')
       .exec(function(err, Consulta){
-        console.log(Consulta.consultas[0]);
         if (err) next(err);
         return res.render('main/doctor/paciente', {
           Paciente: Consulta,

@@ -10,18 +10,27 @@
         <a href="#!email"><span class="black-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
       </div>
     </li>
-    <li><a class="subheader" style="font-size:20px; text-align:center;">Citas</a></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Citas del <%= Dia %></a></li>
 
     <ul class="collection">
       <% for(var i=0; i < Pacientes.length ; i++) { %>
-      <li class="collection-item">
-        <div>
-          Nombre: <%= Pacientes[i].paciente.informacion.nombre %>
-          <a href="#!" class="secondary-content"><i class="material-icons">assignment_turned_in</i></a>
-          <br>
-
-        </div>
-      </li>
+        <% for(var j=0; j < Pacientes[i].paciente.citas.length ; j++) { %>
+          <% if (moment().isSame(Pacientes[i].paciente.citas[j].fecha, 'day')) { %>
+            <li class="collection-item">
+              <div>
+                <form action="/assistant/<%= Pacientes[i].paciente.id %>" method="post">
+                  <input type="hidden" name="posicion" value="<%= j %>">
+                  <input type="hidden" name="id_paciente" value=" <%= Pacientes[i].paciente.citas[j].paciente %>">
+                  <input type="hidden" name="dia_citado" value=" <%= Pacientes[i].paciente.citas[j].fecha %>">
+                  <button type="submit" class="waves-effect waves-light btn secondary-content"><i class="material-icons">assignment_turned_in</i></button>
+                </form>
+                Nombre: <%= Pacientes[i].paciente.informacion.nombre %>
+                <br>
+                Hora: <%= Pacientes[i].paciente.citas[j].hora %>
+              </div>
+            </li>
+          <% } %>
+        <% } %>
       <% } %>
     </ul>
 

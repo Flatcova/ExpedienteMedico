@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var async = require('async');
+var moment = require('moment');
 var Doctor = require('../../models/doctor');
 var Paciente = require('../../models/paciente');
 
@@ -10,45 +11,78 @@ router.get('/', function(req, res, next) {
     return res.redirect('/doctor');
   }else if(req.user && req.user.profile.doc === false){
     Doctor
-      .findById({ _id : req.user.profile.doctor })
-      .populate('pacientes.paciente')
-      .exec(function(err, Pacientes){
-        // for (var i = 0; i < Pacientes.pacientes.length; i++) {
-        //   for (var j = 0; j < Pacientes.pacientes[i].paciente.consultas.length; j++) {
-        //     console.log(Date.now("dd/mm/yyyy"));
-        //     if (Pacientes.pacientes[i].paciente.consultas[j].dia === Date.now(dd/mm/yyyy)){
-        //       console.log(
-        //         'nombre:' + Pacientes.pacientes[i].informacion.nombre)
-        //       console.log(
-        //         'dia:' + Pacientes.pacientes[i].paciente.consultas[j].dia)
-        //     }
-        //   }
-        // }
-        if (err) next(err);
-        return res.render('main/assistant/index',{
-          Pacientes: Pacientes.pacientes,
-          Consultas: Pacientes.pacientes.consultas,
-          err: req.flash('err')
-          });
-        });
+    .findById({ _id : req.user.profile.doctor })
+    .populate('pacientes.paciente')
+    .exec(function(err, Pacientes){
+      if (err) next(err);
+      return res.render('main/assistant/index',{
+        Pacientes: Pacientes.pacientes,
+        Consultas: Pacientes.pacientes.consultas,
+        moment : moment,
+        Dia : moment().format("DD/MMM/YY"),
+        err: req.flash('err')
+      });
+    });
   }else {
     return res.redirect('/');
   }
 });
 
 router.post('/cita', function(req, res, next){
-  Paciente.findById(req.body.paciente , function(err, paciente){
-    if (err) next(err);
+  Doctor
+  .findById({ _id : req.user.profile.doctor })
+  .populate('pacientes.paciente')
+  .exec(function(err, Doc){
 
-    paciente.consultas.push({
-      dia: req.body.dia_cita,
-      hora: req.body.hora_cita
+    for (var i = 0; i < Doc.pacientes.length; i++) {
+      for (var j = 0; j < Doc.pacientes[i].paciente.citas.length; j++) {
+        if(Doc.pacientes[i].paciente.citas[j].hora === req.body.hora_cita || Doc.pacientes[i].paciente.citas[j].paciente === req.body.paciente){
+          return res.redirect('/assistant');
+        }
+      }
+    }
+
+    Paciente.findById(req.body.paciente , function(err, paciente){
+      if (err) next(err);
+      paciente.citas.push({
+        paciente: req.body.paciente,
+        fecha: req.body.dia_cita,
+        hora: req.body.hora_cita
+      });
+      console.log(paciente.citas);
+
+      paciente.save(function(err){
+        if (err) return next(err);
+        return res.redirect('/assistant');
+      });
     });
-    console.log(paciente.consultas);
+  });
+});
 
-    paciente.save(function(err){
-      if (err) return next(err);
-      return res.redirect('/assistant');
+router.post('/:id', function(req, res, next){
+  Doctor
+  .findById({ _id : req.user.profile.doctor })
+  .populate('pacientes.paciente')
+  .exec(function(err, Doc){
+
+    Paciente.findById(req.params.id , function(err, paciente){
+      if (err) next(err);
+
+      Doc.citados.push({
+        paciente: paciente.citas[req.body.posicion].paciente,
+        fecha: paciente.citas[req.body.posicion].fecha
+      });
+
+      Doc.save(function(err){
+        if (err) next(err);
+      });
+
+      paciente.citas.splice(req.body.posicion, 1);
+
+      paciente.save(function(err){
+        if (err) return next(err);
+        return res.redirect('/assistant');
+      });
     });
   });
 });
@@ -89,15 +123,15 @@ router.post('/', function(req, res, next){
     },
     function (paciente){
       Doctor.findById(req.user.profile.doctor, function(err, doctor){
-          if (err) next(err);
-          console.log(paciente);
-          doctor.pacientes.push({
-      			paciente: paciente._id
-      		});
-          doctor.save(function(err){
-            if (err) return next(err);
-            return res.redirect('/assistant');
-          })
+        if (err) next(err);
+        console.log(paciente);
+        doctor.pacientes.push({
+          paciente: paciente._id
+        });
+        doctor.save(function(err){
+          if (err) return next(err);
+          return res.redirect('/assistant');
+        })
       });
     }
 
