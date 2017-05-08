@@ -24,6 +24,8 @@ var pacienteSchema = Schema({
 	},
 	citas:[{
 	}],
+	antecedentes:[{
+	}],
   consultas: [{
 		consulta: { type: Schema.Types.ObjectId, ref: 'Consulta' },
 	}]

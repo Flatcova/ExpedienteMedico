@@ -15,8 +15,17 @@
     <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
     <li><div class="divider"></div></li>
     <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre %></a></li>
+    <% if (Paciente.antecedentes.length === 0) {%>
+      <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light btn pulse">Antecedentes de <%= Paciente.informacion.nombre %></a></li>
+    <%}else {%>
+      <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Antecedentes de <%= Paciente.informacion.nombre %></a></li>
+    <%}%>
     <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
-    <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
+    <% if (Paciente.antecedentes.length === 0) {%>
+      <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" disabled="disabled" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
+    <%}else {%>
+      <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
+    <%}%>
     <% for(var i=Consultas.length-1; i >= 0 ; i--) { %>
     <li class="collection-item">
       <span class="title">Consulta del: <%= moment(Consultas[i].consulta.diagnostico.date).format("DD-MMMM-YYYY") %></span>
@@ -127,8 +136,8 @@
                 <label for="recomendation" data-error="Solamente caracteres">Recomendado por:</label>
               </div>
 
-              <button class="btn waves-effect waves-light" type="button">Guardar Paciente
-                <i class="material-icons left">person_add</i>
+              <button class="btn waves-effect waves-light" type="button">Guardar Cambios
+                <i class="material-icons left">save</i>
               </button>
             </div>
           </form>

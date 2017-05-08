@@ -15,6 +15,7 @@
     <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
     <li><div class="divider"></div></li>
     <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre %></a></li>
+    <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Antecedentes de <%= Paciente.informacion.nombre %></a></li>
     <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
     <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
     <% for(var i=Consultas.length-1; i >= 0 ; i--) { %>
@@ -39,20 +40,12 @@
     <div class="col s12 m10 offset-m1">
       <div class="card white darken-1">
         <div class="card-content black-text center-align">
-          <form method="post">
             <div class="row">
               <h3>Consulta del: <%= moment(Consulta.diagnostico.date).format("DD-MMMM-YYYY")%></h3>
-              <div class="input-field col s6">
-                <i class="material-icons prefix">person</i>
-                <input id="rfc" type="text" pattern="[A-Z,a-z, ]*" value="<%= Consulta.diagnostico.rfc%>" name="rfc" class="validate" disabled>
-                <label for="rfc" data-error="Solamente caracteres">Entrada 1</label>
+              <div class="input-field col s12">
+                <textarea id="textarea1" name="Consulta" class="materialize-textarea" style="min-height: 25rem; color:black;" disabled placeholder="Aqui puede escribir la informacion recabada durante la consulta o sus anotaciones importantes"><%= Consulta.diagnostico.Consulta %></textarea>
+                <label for="textarea1">Consulta General</label>
               </div>
-              <div class="input-field col s4">
-                <input id="rfc2" type="text" pattern="[A-Z,a-z, ]*" value="<%= Consulta.diagnostico.rfc2%>" name="rfc2" class="validate" disabled>
-                <label for="rfc2">Entrada 2</label>
-              </div>
-            </div>
-          </form>
         </div>
       </div>
     </div>

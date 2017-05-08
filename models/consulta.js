@@ -7,8 +7,7 @@ var ConsultaSchema = Schema({
 	diagnostico: {
           paciente: { type: Schema.Types.ObjectId, ref: 'Paciente' },
           date: { type: Date, default: Date.now },
-	        rfc : String,
-          rfc2: String,
+	        Consulta: String
 	}
 });
 
