@@ -12,13 +12,12 @@
       </div>
     </li>
     <li><a href="/doctor"><i class="material-icons">arrow_back</i>Regresar a inicio</a></li>
-    <li><a href="/logout" class="waves-effect waves-light btn">Cerrar Sesion</a></li>
     <li><div class="divider"></div></li>
-    <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre %></a></li>
+    <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre_completo %></a></li>
     <% if (Paciente.antecedentes.length === 0) {%>
-      <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light btn pulse">Antecedentes de <%= Paciente.informacion.nombre %></a></li>
+      <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light btn pulse">Antecedentes de <%= Paciente.informacion.nombre_completo %></a></li>
     <%}else {%>
-      <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Antecedentes de <%= Paciente.informacion.nombre %></a></li>
+      <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Antecedentes de <%= Paciente.informacion.nombre_completo %></a></li>
     <%}%>
     <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
     <% if (Paciente.antecedentes.length === 0) {%>
@@ -53,16 +52,16 @@
               <h3>Informacion del Paciente</h3>
               <div class="input-field col s6">
                 <i class="material-icons prefix">person</i>
-                <input id="name_wife" type="text" pattern="[A-Z,a-z, ]*" name="name_wife" class="validate" value="<%= Paciente.informacion.nombre %>" disabled>
+                <input id="name_wife" type="text" pattern="[A-Z,a-z, ]*" name="name_wife" class="validate" style="color:black;" value="<%= Paciente.informacion.nombre_completo %>" disabled>
                 <label for="name_wife" data-error="Solamente caracteres">Nombre Completo</label>
               </div>
               <div class="input-field col s4">
-                <input id="edad_wife" value="<%= Paciente.informacion.edad %>" type="number" name="edad_wife" class="validate">
+                <input id="edad_wife" value="<%= Paciente.informacion.edad %>" type="number" name="edad_wife" class="validate" style="color:black;" disabled>
                 <label for="edad_wife">Edad</label>
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">cake</i>
-                <input value="<%= Paciente.informacion.cumpleanos %>" type="date" name="birth" class="birthpicker" id="birth">
+                <input value="<%= moment(Paciente.informacion.cumpleanos).format('DD-MMMM-YYYY')%>" type="text" style="color:black;" name="birth" id="birth" disabled>
                 <label for="birth">Fecha de Naciemiento</label>
               </div>
               <div class="input-field col s6">

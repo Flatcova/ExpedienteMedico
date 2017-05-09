@@ -5,7 +5,9 @@ var Schema = mongoose.Schema;
 // define the schema for our user model
 var pacienteSchema = Schema({
 	informacion: {
-	        nombre : String,
+					nombres : String,
+					apellidos: String,
+	        nombre_completo : String,
           edad : Number,
           cumpleanos : {type:Date, unique:true},
 	        correo : {type:String, unique: true},

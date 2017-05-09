@@ -1,0 +1,268 @@
+<%- layout('layout') %>
+<main>
+  <ul id="slide-out"class="side-nav fixed">
+    <li>
+      <div class="userView">
+        <div class="background">
+          <img src="images/doc-img.jpg" >
+        </div>
+        <a href="/"><img class="circle" src="images/doc-pic.jpg"></a>
+        <a href="/"><span class="white-text name" style="font-weight:bold;"><%= user.profile.nombre %></span></a>
+        <a href="/"><span class="white-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
+      </div>
+    </li>
+    <li><a href="/doctor"><i class="material-icons">arrow_back</i>Regresar a inicio</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre_completo %></a></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
+    <% for(var i=Consultas.length-1; i >= 0 ; i--) { %>
+    <li class="collection-item">
+      <span class="title">Consulta del: <%= moment(Consultas[i].consulta.diagnostico.date).format("DD-MMMM-YYYY") %></span>
+      <a href="/doctor/<%= Paciente._id %>/<%= Consultas[i].consulta._id %>" class="secondary-content"><i class="material-icons">forward</i></a>
+    </li>
+    <% } %>
+  </ul>
+  <nav>
+    <div class="nav-wrapper" style="background-color:#26a69a;">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo"><img style="height:auto; width:8%;" src="images/navbar-logo.png"> Expediente Medico</a>
+      <div class="input-field right">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col s12 m10 offset-m1">
+      <div class="card white darken-1">
+        <div class="card-content black-text center-align">
+          <form method="post">
+            <div class="row">
+              <h3>Registro de Antecedentes</h3>
+
+              <h5>AHF. (Antecedentes Historicos Familiares)</h5>
+              <div class="input-field col s12">
+                <textarea id="textarea1" name="historia_familiar" class="materialize-textarea" placeholder="Escriba toda la informacion necesaria brindada por el paciente"></textarea>
+                <label for="textarea1">Historial Familiar</label>
+              </div>
+
+              <h5>AGO. (Antecedentes Ginecologicos)</h5>
+              <div class="input-field col s4">
+                <input id="Menarquia" type="text" pattern="[A-Z,a-z, ]*" name="Menarquia" class="validate">
+                <label for="Menarquia">M (Menarquia)</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="Ritmo" type="text" pattern="[A-Z,a-z, ]*" name="Ritmo" class="validate">
+                <label for="Ritmo">R (Ritmo)</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="ivsa" type="text" pattern="[A-Z,a-z, ]*" name="ivsa" class="validate">
+                <label for="ivsa">IVSA (Inicio Vida Sexual Activa)</label>
+              </div>
+
+              <div class="input-field col s3">
+                <input id="Gestas" type="number" name="Gestas" class="validate">
+                <label for="Gestas">G (Gestas)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Partos" type="number" name="Partos" class="validate">
+                <label for="Partos">P (Partos)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Cesarias" type="number" name="Cesarias" class="validate">
+                <label for="Cesarias">C (Cesarias)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Abortos" type="number" name="Abortos" class="validate">
+                <label for="Abortos">A (Abortos)</label>
+              </div>
+
+              <div class="input-field col s3">
+                <input id="fuc" type="date" name="fuc" class="FUCpicker">
+                <label for="fuc">FUC (Fecha Ultima Cesario)</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="Peso_Hijos" type="text" name="Peso_Hijos" class="validate">
+                <label for="Peso_Hijos">Peso Hijos (kg.)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="ppf" type="text" pattern="[A-Z,a-z, ]*" name="ppf" class="validate">
+                <label for="ppf">PPF (Prog. Planif. Familiar)</label>
+              </div>
+
+              <div class="input-field col s5">
+                <input id="fum" type="date" name="fum" class="FUCpicker">
+                <label for="fum">FUM (Fecha Ultima Menstruación)</label>
+              </div>
+              <div class="input-field col s2">
+                <select name="Dismenorrea" id="Dismenorrea">
+                  <option value="" disabled selected>Selec. una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Dismenorrea</label>
+              </div>
+              <div class="input-field col s2">
+                <select name="Dispareunia" id="Dispareunia">
+                  <option value="" disabled selected>Selec. una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Dispareunia</label>
+              </div>
+              <div class="input-field col s3">
+                <select name="Sangrado_Postcoito" id="Sangrado_Postcoito">
+                  <option value="" disabled selected>Selec. una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Sangrado Postcoito</label>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s4" id="Disme_cant" style="display:none;">
+                  <input id="Dismenorrea_si" type="number" name="Dismenorrea_si" class="validate">
+                  <label for="Dismenorrea_si">Cuantas Dismenorreas</label>
+                </div>
+                <div class="input-field col s4" id="Dispa_cant" style="display:none;">
+                  <input id="Dispareunias_si" type="number" name="Dispareunias_si" class="validate">
+                  <label for="Dispareunias_si">Cuantas Dispareunias</label>
+                </div>
+                <div class="input-field col s4" id="Sang_cant" style="display:none;">
+                  <input id="Sangrado_si" type="number" name="Sangrado_si" class="validate">
+                  <label for="Sangrado_si">Cuantos Sangrados Postcoito</label>
+                </div>
+              </div>
+
+              <div class="input-field col s4">
+                <input id="cod" type="date" name="cod" class="FUCpicker">
+                <label for="cod">COD (Papanicolao)</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="Mamografia" type="date" name="Mamografia" class="FUCpicker">
+                <label for="Mamografia">Mamografía</label>
+              </div>
+              <div class="input-field col s4">
+                <select type="text" name="Tipo_Sangre">
+                  <option value="" disabled selected>Tipo de Sangre</option>
+                  <option value="O+">O+</option>
+                  <option value="O-">O-</option>
+                  <option value="A+">A+</option>
+                  <option value="A-">A-</option>
+                  <option value="B+">B+</option>
+                  <option value="B-">B-</option>
+                  <option value="AB+">AB+</option>
+                  <option value="AB-">AB-</option>
+                </select>
+              </div>
+
+              <div class="input-field col s3">
+                <select name="Micciones" id="Micciones">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Micciones</label>
+              </div>
+              <div class="input-field col s3">
+                <select name="Nicturia" id="Nicturia">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Nicturia</label>
+              </div>
+              <div class="input-field col s3">
+                <select name="Urgencia" id="Urgencia">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Urgencia</label>
+              </div>
+              <div class="input-field col s3">
+                <select name="Inc_Urgencias" id="Inc_Urgencias">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Incontinencia de Urgencias</label>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s3" id="Micciones_cuant" style="display:none;">
+                  <input type="number" name="Micciones_si" class="validate">
+                  <label for="Micciones_si">Cuantas Micciones</label>
+                </div>
+                <div class="input-field col s3" id="Nicturia_cuant" style="display:none;">
+                  <input type="number" name="Nicturia_si" class="validate">
+                  <label for="Nicturia_si">Cuantas Nicturia</label>
+                </div>
+                <div class="input-field col s3" id="Urgencia_cuant" style="display:none;">
+                  <input type="number" name="Urgencia_si" class="validate">
+                  <label for="Urgencia_si">Cuantas Urgencia</label>
+                </div>
+                <div class="input-field col s3" id="Inc_Urgencias_cuant" style="display:none;">
+                  <input type="number" name="Inc_Urgencias_si" class="validate">
+                  <label for="Inc_Urgencias_si">Cuantas Inc. de Urgencias</label>
+                </div>
+              </div>
+
+              <div class="input-field col s4">
+                <select name="Tenesmo" id="Tenesmo">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Tenesmo</label>
+              </div>
+              <div class="input-field col s4">
+                <select name="iue" id="IUE">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>IUE</label>
+              </div>
+              <div class="input-field col s4">
+                <select name="Disuria" id="Disuria">
+                  <option value="" disabled selected>Selecciona una opción</option>
+                  <option value="Si">Si</option>
+                  <option value="No">No</option>
+                </select>
+                <label>Disuria</label>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s4" id="Tenesmo_cuant" style="display:none;">
+                  <input type="number" name="Tenesmo_si" class="validate">
+                  <label for="Tenesmo_si">Cuantas Tenesmo</label>
+                </div>
+                <div class="input-field col s4" id="IUE_cuant" style="display:none;">
+                  <input type="number" name="IUE_si" class="validate">
+                  <label for="IUE_si">Cuantas IUE</label>
+                </div>
+                <div class="input-field col s4" id="Disuria_cuant" style="display:none;">
+                  <input type="number" name="Disuria_si" class="validate">
+                  <label for="Disuria_si">Cuantas Disuria</label>
+                </div>
+              </div>
+
+              <br><br>
+              <h5>APP. (Antecedentes Personales Patologicos)</h5>
+
+              <div class="input-field col s12">
+                <textarea id="textarea1" name="Ante_patologicos" class="materialize-textarea" placeholder="Escriba la informacion patologica brindada por el paciente"></textarea>
+                <label for="textarea1">Antecedentes Patologicos</label>
+              </div>
+
+              <div class="col s12">
+                <button class="btn waves-effect waves-light" type="submit">Guardar Antecedentes
+                  <i class="material-icons left">assignment_turned_in</i>
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

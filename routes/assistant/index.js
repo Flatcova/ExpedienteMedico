@@ -4,6 +4,7 @@ var async = require('async');
 var moment = require('moment');
 var Doctor = require('../../models/doctor');
 var Paciente = require('../../models/paciente');
+var algoliasearch =require('algoliasearch');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -92,7 +93,9 @@ router.post('/', function(req, res, next){
     function(callback){
       var newPaciente = new Paciente();
 
-      newPaciente.informacion.nombre = req.body.name_wife;
+      newPaciente.informacion.nombres = req.body.name_wife;
+      newPaciente.informacion.apellidos = req.body.apellido_wife;
+      newPaciente.informacion.nombre_completo = req.body.name_wife+' '+req.body.apellido_wife;
       newPaciente.informacion.edad = req.body.edad_wife;
       newPaciente.informacion.cumpleanos = req.body.birth;
       newPaciente.informacion.correo = req.body.email;
@@ -115,6 +118,13 @@ router.post('/', function(req, res, next){
           return res.redirect('/assistant');
         }else{
           newPaciente.save(function(err, paciente){
+            var client = algoliasearch('MEZ3TXMHN8', '944234e3bead982ceb2ab534d5a4cfa5');
+            var index = client.initIndex('test_ExpedienteMed');
+
+            index.addObjects([paciente], function(err, content) {
+              console.log(content);
+            });
+
             if (err) next (err);
             callback(null, paciente);
           });

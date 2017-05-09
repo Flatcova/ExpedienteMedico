@@ -85,10 +85,15 @@
                 </blockquote>
                 <% } %>
               <h3>Nuevo Paciente</h3>
-              <div class="input-field col s8">
+              <div class="input-field col s4">
                 <i class="material-icons prefix">person</i>
                 <input id="name_wife" type="text" pattern="[A-Z,a-z, ]*" name="name_wife" class="validate" required>
-                <label for="name_wife" data-error="Solamente caracteres">Nombre Completo</label>
+                <label for="name_wife" data-error="Solamente caracteres">Nombre(s)</label>
+              </div>
+              <div class="input-field col s4">
+                <i class="material-icons prefix">person</i>
+                <input id="apellido_wife" type="text" pattern="[A-Z,a-z, ]*" name="apellido_wife" class="validate" required>
+                <label for="apellido_wife" data-error="Solamente caracteres">Apellidos</label>
               </div>
               <div class="input-field col s4">
                 <input id="edad_wife" type="number" name="edad_wife" class="validate">

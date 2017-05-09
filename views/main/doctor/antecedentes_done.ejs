@@ -1,0 +1,211 @@
+<%- layout('layout') %>
+<main>
+  <ul id="slide-out"class="side-nav fixed">
+    <li>
+      <div class="userView">
+        <div class="background">
+          <img src="images/doc-img.jpg" >
+        </div>
+        <a href="/"><img class="circle" src="images/doc-pic.jpg"></a>
+        <a href="/"><span class="white-text name" style="font-weight:bold;"><%= user.profile.nombre %></span></a>
+        <a href="/"><span class="white-text email" style="font-weight:bold;"><%= user.profile.correo %></span></a>
+      </div>
+    </li>
+    <li><a href="/doctor"><i class="material-icons">arrow_back</i>Regresar a inicio</a></li>
+    <li><div class="divider"></div></li>
+    <li><a href="/doctor/<%= Paciente._id %>" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Información de <%= Paciente.informacion.nombre_completo %></a></li>
+    <li><a href="/doctor/<%= Paciente._id %>/antecedentes" class="waves-effect waves-light"><i class="material-icons">assignment_ind</i>Antecedentes de <%= Paciente.informacion.nombre_completo %></a></li>
+    <li><a class="subheader" style="font-size:20px; text-align:center;">Consultas</a></li>
+    <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
+    <% for(var i=Consultas.length-1; i >= 0 ; i--) { %>
+    <li class="collection-item">
+      <span class="title">Consulta del: <%= moment(Consultas[i].consulta.diagnostico.date).format("DD-MMMM-YYYY") %></span>
+      <a href="/doctor/<%= Paciente._id %>/<%= Consultas[i].consulta._id %>" class="secondary-content"><i class="material-icons">forward</i></a>
+    </li>
+    <% } %>
+  </ul>
+  <nav>
+    <div class="nav-wrapper" style="background-color:#26a69a;">
+      <a href="#" data-activates="slide-out" class="button-collapse"><i class="material-icons">menu</i></a>
+      <a href="/" class="brand-logo"><img style="height:auto; width:8%;" src="images/navbar-logo.png"> Expediente Medico</a>
+      <div class="input-field right">
+        <input id="search" type="search" required>
+        <label class="label-icon" for="search"><i class="material-icons">search</i></label>
+        <i class="material-icons">close</i>
+      </div>
+    </div>
+  </nav>
+  <div class="row">
+    <div class="col s12 m10 offset-m1">
+      <div class="card white darken-1">
+        <div class="card-content black-text center-align">
+            <div class="row">
+              <h3>Registro de Antecedentes</h3>
+              <h5>AHF. (Antecedentes Historicos Familiares)</h5>
+              <div class="input-field col s12">
+                <textarea id="textarea1" name="historia_familiar" disabled class="materialize-textarea" style="color:black;"><%= ahf.historial_familiar %></textarea>
+                <label for="textarea1">Historial Familiar</label>
+              </div>
+
+              <h5>AGO. (Antecedentes Ginecologicos)</h5>
+              <div class="input-field col s4">
+                <input id="M" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.Menarquia %>" disabled style="color:black;">
+                <label for="M">M (Menarquia)</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="R" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.Ritmo %>" disabled style="color:black;">
+                <label for="R">R (Ritmo)</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="IVSA" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.ivsa %>" disabled style="color:black;">
+                <label for="IVSA">IVSA (Inicio Vida Sexual Activa)</label>
+              </div>
+
+              <div class="input-field col s3">
+                <input id="G" type="number" pattern="[A-Z,a-z, ]*" value="<%= ago.Gestas %>" disabled style="color:black;">
+                <label for="G">G (Gestas)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="P" type="number" pattern="[A-Z,a-z, ]*" value="<%= ago.Partos %>" disabled style="color:black;">
+                <label for="P">P (Partos)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="C" type="number" pattern="[A-Z,a-z, ]*" value="<%= ago.Cesarias %>" disabled style="color:black;">
+                <label for="C">C (Cesarias)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="A" type="number" pattern="[A-Z,a-z, ]*" value="<%= ago.Abortos %>" disabled style="color:black;">
+                <label for="A">A (Abortos)</label>
+              </div>
+
+              <div class="input-field col s3">
+                <input id="FUC" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.fuc %>" disabled style="color:black;">
+                <label for="FUC">FUC (Fecha Ultima Cesario)</label>
+              </div>
+              <div class="input-field col s6">
+                <input id="Peso_Hijos" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.Peso_Hijos %>" disabled style="color:black;">
+                <label for="Peso_Hijos">Peso Hijos (kg.)</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="PPF" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.ppf %>" disabled style="color:black;">
+                <label for="PPF">PPF (Prog. Planif. Familiar)</label>
+              </div>
+
+              <div class="input-field col s5">
+                <input id="FUM" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.fum %>" disabled style="color:black;">
+                <label for="FUM">FUM (Fecha Ultima Menstruación)</label>
+              </div>
+              <div class="input-field col s2">
+                <input id="Dismenorrea" type="text" name="Dismenorrea" value="<%= ago.Dismenorrea %>" disabled style="color:black;">
+                <label for="Dismenorrea">Dismenorrea</label>
+              </div>
+              <div class="input-field col s2">
+                <input id="Dispareunia" type="text" name="Dispareunia" value="<%= ago.Dispareunia %>" disabled style="color:black;">
+                <label for="Dispareunia">Dispareunia</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Sangrado_Postcoito" type="text" name="Sangrado_Postcoito" value="<%= ago.Sangrado_Postcoito %>" disabled style="color:black;">
+                <label for="Sangrado_Postcoito">Sangrado Postcoito</label>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s4" id="Disme_cant">
+                  <input id="Dismenorrea_done" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.Dismenorrea_si %>" disabled style="color:black;">
+                  <label for="Dismenorrea_done">Cuantas Dismenorreas</label>
+                </div>
+                <div class="input-field col s4" id="Dispa_cant">
+                  <input id="Dispareunias_done" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.Dispareunias_si %>" disabled style="color:black;">
+                  <label for="Dispareunias_done">Cuantas Dispareunias</label>
+                </div>
+                <div class="input-field col s4" id="Sang_cant">
+                  <input id="Sangrado_done" type="text" pattern="[A-Z,a-z, ]*" value="<%= ago.Sangrado_si %>" disabled style="color:black;">
+                  <label for="Sangrado_done">Cuantos Sangrados Postcoito</label>
+                </div>
+              </div>
+
+              <div class="input-field col s4">
+                <input id="COD" type="text" value="<%= ago.cod %>" disabled style="color:black;">
+                <label for="COD">COD (Papanicolao)</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="Mamografia" type="text" value="<%= ago.Mamografia %>" disabled style="color:black;">
+                <label for="Mamografia">Mamografía</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="Tipo_Sangre" type="text" value="<%= ago.Tipo_Sangre %>" disabled style="color:black;">
+                <label for="Tipo_Sangre">Tipo de Sangre</label>
+              </div>
+
+              <div class="input-field col s3">
+                <input id="Micciones" type="text" value="<%= ago.Micciones %>" disabled style="color:black;">
+                <label for="Micciones">Micciones</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Nicturia" type="text" value="<%= ago.Nicturia %>" disabled style="color:black;">
+                <label for="Nicturia">Nicturia</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Urgencia" type="text" value="<%= ago.Urgencia %>" disabled style="color:black;">
+                <label for="Urgencia">Urgencia</label>
+              </div>
+              <div class="input-field col s3">
+                <input id="Inc_Urgencias" type="text" value="<%= ago.Inc_Urgencias %>" disabled style="color:black;">
+                <label for="Inc_Urgencias">Incontinencia de Urgencias</label>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s3" id="Micciones_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="Micciones_done" value="<%= ago.Micciones_si %>" disabled style="color:black;">
+                  <label for="Micciones_si">Cuantas Micciones</label>
+                </div>
+                <div class="input-field col s3" id="Nicturia_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="Nicturia_done" value="<%= ago.Nicturia_si %>" disabled style="color:black;">
+                  <label for="Nicturia_si">Cuantas Nicturia</label>
+                </div>
+                <div class="input-field col s3" id="Urgencia_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="Urgencia_done" value="<%= ago.Urgencia_si %>" disabled style="color:black;">
+                  <label for="Urgencia_si">Cuantas Urgencia</label>
+                </div>
+                <div class="input-field col s3" id="Inc_Urgencias_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="Inc_Urgencias_done" value="<%= ago.Inc_Urgencias_si %>" disabled style="color:black;">
+                  <label for="Inc_Urgencias_si">Cuantas Inc. de Urgencias</label>
+                </div>
+              </div>
+
+              <div class="input-field col s4">
+                <input id="Tenesmo" type="text" value="<%= ago.Tenesmo %>" disabled style="color:black;">
+                <label for="Tenesmo">Tenesmo</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="IUE" type="text" value="<%= ago.iue %>" disabled style="color:black;">
+                <label for="IUE">IUE</label>
+              </div>
+              <div class="input-field col s4">
+                <input id="Disuria" type="text" value="<%= ago.Disuria %>" disabled style="color:black;">
+                <label for="Disuria">Disuria</label>
+              </div>
+              <div class="col s12">
+                <div class="input-field col s4" id="Tenesmo_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="Tenesmo_done" value="<%= ago.Tenesmo_si %>" disabled style="color:black;">
+                  <label for="Tenesmo_si">Cuantas Tenesmo</label>
+                </div>
+                <div class="input-field col s4" id="IUE_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="IUE_done" value="<%= ago.IUE_si %>" disabled style="color:black;">
+                  <label for="IUE_si">Cuantas IUE</label>
+                </div>
+                <div class="input-field col s4" id="Disuria_cuant">
+                  <input type="text" pattern="[A-Z,a-z, ]*" id="Disuria_done" value="<%= ago.Disuria_si %>" disabled style="color:black;">
+                  <label for="Disuria_si">Cuantas Disuria</label>
+                </div>
+              </div>
+
+              <br><br>
+              <h5>APP. (Antecedentes Personales Patologicos)</h5>
+              <div class="input-field col s12">
+                <textarea id="textarea1" name="historia_familiar" disabled style="color:black;" class="materialize-textarea"><%= app.Ante_patologicos %></textarea>
+                <label for="textarea1">Antecendes Patologicos</label>
+              </div>
+            </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</main>

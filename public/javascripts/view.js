@@ -19,15 +19,15 @@ $('.datepicker').pickadate({
      autocomplete('#search', { hint: false }, [
        {
          source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
-         displayKey: 'informacion.nombre',
+         displayKey: 'informacion.nombre_completo',
          templates: {
            suggestion: function(suggestion) {
-             return suggestion._highlightResult.informacion.nombre.value;
+             return suggestion._highlightResult.informacion.nombre_completo.value;
            }
          }
        }
      ]).on('autocomplete:selected', function(event, suggestion, dataset) {
-       window.location.href = '/doctor/'+suggestion._id.$oid;
+       window.location.href = '/doctor/'+suggestion._id;
      });
 
      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
