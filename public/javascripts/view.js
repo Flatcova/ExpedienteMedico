@@ -64,10 +64,6 @@ $('.datepicker').pickadate({
         $("#Disme_cant").hide()
         }
     });
-    var Dismenorrea = document.getElementById('Dismenorrea_done');
-
-    if(Dismenorrea.value.length == 0)
-        Dismenorrea.value = "0";
     $('#Dispareunia').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Dispa_cant").show()
@@ -76,10 +72,7 @@ $('.datepicker').pickadate({
         $("#Dispa_cant").hide()
         }
     });
-    var Dispareunia = document.getElementById('Dispareunias_done');
 
-    if(Dispareunia.value.length == 0)
-        Dispareunia.value = "0";
     $('#Sangrado_Postcoito').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Sang_cant").show()
@@ -88,9 +81,7 @@ $('.datepicker').pickadate({
         $("#Sang_cant").hide()
         }
     });
-    var Sangrado = document.getElementById('Sangrado_done');
-    if(Sangrado.value.length == 0)
-        Sangrado.value = "0";
+
     $('#Micciones').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Micciones_cuant").show()
@@ -99,9 +90,7 @@ $('.datepicker').pickadate({
         $("#Micciones_cuant").hide()
         }
     });
-    var Micciones = document.getElementById('Micciones_done');
-    if(Micciones.value.length == 0)
-        Micciones.value = "0";
+
     $('#Nicturia').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Nicturia_cuant").show()
@@ -110,9 +99,7 @@ $('.datepicker').pickadate({
         $("#Nicturia_cuant").hide()
         }
     });
-    var Nicturia = document.getElementById('Nicturia_done');
-    if(Nicturia.value.length == 0)
-        Nicturia.value = "0";
+
     $('#Urgencia').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Urgencia_cuant").show()
@@ -121,9 +108,7 @@ $('.datepicker').pickadate({
         $("#Urgencia_cuant").hide()
         }
     });
-    var Urgencia = document.getElementById('Urgencia_done');
-    if(Urgencia.value.length == 0)
-        Urgencia.value = "0";
+
     $('#Inc_Urgencias').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Inc_Urgencias_cuant").show()
@@ -132,9 +117,7 @@ $('.datepicker').pickadate({
         $("#Inc_Urgencias_cuant").hide()
         }
     });
-    var Inc_Urgencias = document.getElementById('Inc_Urgencias_done');
-    if(Inc_Urgencias.value.length == 0)
-        Inc_Urgencias.value = "0";
+
     $('#Tenesmo').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Tenesmo_cuant").show()
@@ -143,9 +126,7 @@ $('.datepicker').pickadate({
         $("#Tenesmo_cuant").hide()
         }
     });
-    var Tenesmo = document.getElementById('Tenesmo_done');
-    if(Tenesmo.value.length == 0)
-        Tenesmo.value = "0";
+
     $('#IUE').on('change',function(){
         if( $(this).val()==="Si"){
         $("#IUE_cuant").show()
@@ -154,9 +135,7 @@ $('.datepicker').pickadate({
         $("#IUE_cuant").hide()
         }
     });
-    var IUE = document.getElementById('IUE_done');
-    if(IUE.value.length == 0)
-        IUE.value = "0";
+
     $('#Disuria').on('change',function(){
         if( $(this).val()==="Si"){
         $("#Disuria_cuant").show()
@@ -165,7 +144,38 @@ $('.datepicker').pickadate({
         $("#Disuria_cuant").hide()
         }
     });
-    var Disuria = document.getElementById('Disuria_done');
-    if(Disuria.value.length == 0)
+
+
+        var Dismenorrea = document.getElementById('Dismenorrea_done');
+        var Dispareunia = document.getElementById('Dispareunias_done');
+        var Sangrado = document.getElementById('Sangrado_done');
+        var Micciones = document.getElementById('Micciones_done');
+        var Nicturia = document.getElementById('Nicturia_done');
+        var Urgencia = document.getElementById('Urgencia_done');
+        var Inc_Urgencias = document.getElementById('Inc_Urgencias_done');
+        var Tenesmo = document.getElementById('Tenesmo_done');
+        var IUE = document.getElementById('IUE_done');
+        var Disuria = document.getElementById('Disuria_done');
+
+
+        if(Dismenorrea.value.length == 0)
+        Dismenorrea.value = "0";
+        if(Dispareunia.value.length == 0)
+        Dispareunia.value = "0";
+        if(Sangrado.value.length == 0)
+        Sangrado.value = "0";
+        if(Micciones.value.length == 0)
+        Micciones.value = "0";
+        if(Nicturia.value.length == 0)
+        Nicturia.value = "0";
+        if(Urgencia.value.length == 0)
+        Urgencia.value = "0";
+        if(Inc_Urgencias.value.length == 0)
+        Inc_Urgencias.value = "0";
+        if(Tenesmo.value.length == 0)
+        Tenesmo.value = "0";
+        if(IUE.value.length == 0)
+        IUE.value = "0";
+        if(Disuria.value.length == 0)
         Disuria.value = "0";
 });
