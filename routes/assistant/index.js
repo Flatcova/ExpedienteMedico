@@ -120,8 +120,12 @@ router.post('/', function(req, res, next){
           newPaciente.save(function(err, paciente){
             var client = algoliasearch('MEZ3TXMHN8', '944234e3bead982ceb2ab534d5a4cfa5');
             var index = client.initIndex('test_ExpedienteMed');
-
-            index.addObjects([paciente], function(err, content) {
+            let pacienteToAlgolia = JSON.parse(JSON.stringify(paciente));
+            pacienteToAlgolia['_tags'] = `doctor_${req.user.profile.doctor}`;
+            console.log(pacienteToAlgolia);
+             index.addObjects([
+              pacienteToAlgolia
+            ], function(err, content) {
               console.log(content);
             });
 

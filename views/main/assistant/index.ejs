@@ -57,7 +57,7 @@
             <% } %>
           </select>
         </div>
-        <button class="btn waves-effect waves-light" type="submit">Agendar Cita
+        <button class="btn waves-effect waves-light" id="citar" type="submit" >Agendar Cita
           <i class="material-icons left">event</i>
         </button>
       </form>
@@ -85,6 +85,7 @@
                 </blockquote>
                 <% } %>
               <h3>Nuevo Paciente</h3>
+              <h5>Datos personales</h5>
               <div class="input-field col s4">
                 <i class="material-icons prefix">person</i>
                 <input id="name_wife" type="text" pattern="[A-Z,a-z, ]*" name="name_wife" class="validate" required>
@@ -101,7 +102,7 @@
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">cake</i>
-                <input type="date" name="birth" class="birthpicker" id="birth">
+                <input type="date" name="birth" class="birthpicker" id="birth" required>
                 <label for="birth">Fecha de Naciemiento</label>
               </div>
               <div class="input-field col s6">
@@ -116,11 +117,11 @@
               </div>
               <div class="input-field col s3">
                 <i class="material-icons prefix">phone</i>
-                <input id="telefono" type="number" pattern="[789][0-9].{10,}$" name="telefono" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="telefono" type="tel" pattern="\d{3}\d{3}\d{4}" name="telefono" class="validate" placeholder="xxx-xxx-xxxx" required>
                 <label for="telefono" data-error="Verifica el numero">Telefono de casa</label>
               </div><div class="input-field col s3">
                 <i class="material-icons prefix">smartphone</i>
-                <input id="cellular" type="number" pattern="[789][0-9].{10,}$" name="cellular" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="cellular" type="tel" pattern="\d{3}\d{3}\d{4}" name="cellular" class="validate" placeholder="xxx-xxx-xxxx">
                 <label for="cellular" data-error="Verifica el numero">Telefono celular</label>
               </div>
               <div class="input-field col s6">
@@ -144,14 +145,14 @@
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">phone</i>
-                <input id="work_phone" type="number" pattern="[789][0-9].{10,}$" name="work_phone" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="work_phone" type="tel" pattern="\d{3}\d{3}\d{4}" name="work_phone" class="validate" placeholder="xxx-xxx-xxxx">
                 <label for="work_phone" data-error="Verifica el numero">Telefono del trabajo</label>
               </div>
-
+              <h5>Datos del esposo y/o pareja</h5>
               <!-- Esposo -->
               <div class="input-field col s8">
                 <i class="material-icons prefix">person</i>
-                <input id="name_men" type="text" pattern="[A-Z,a-z, ]*" name="name_men" class="validate" required>
+                <input id="name_men" type="text" pattern="[A-Z,a-z, ]*" name="name_men" class="validate">
                 <label for="name_men" data-error="Solamente caracteres">Nombre del esposo</label>
               </div>
               <div class="input-field col s4">
@@ -165,13 +166,13 @@
               </div>
               <div class="input-field col s6">
                 <i class="material-icons prefix">phone</i>
-                <input id="men_phone" type="number" pattern="[789][0-9].{10,}$" name="men_phone" class="validate" placeholder="xxx-xxx-xxxx">
+                <input id="men_phone" type="tel" pattern="\d{3}\d{3}\d{4}" name="men_phone" class="validate" placeholder="xxx-xxx-xxxx">
                 <label for="men_phone" data-error="Verifica el numero">Telefono del esposo</label>
               </div>
 
               <div class="input-field col s12">
                 <i class="material-icons prefix">person</i>
-                <input id="recomendation" type="text" pattern="[A-Z,a-z, ]*" name="recomendation" class="validate" required>
+                <input id="recomendation" type="text" pattern="[A-Z,a-z, ]*" name="recomendation" class="validate">
                 <label for="recomendation" data-error="Solamente caracteres">Recomendado por:</label>
               </div>
 

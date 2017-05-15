@@ -6,6 +6,7 @@ var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
 var morgan = require('morgan');
 var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 var session = require('express-session');
 var flash = require('express-flash');
 var MongoStore = require('connect-mongo')(session);

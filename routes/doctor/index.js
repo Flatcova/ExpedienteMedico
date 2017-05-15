@@ -1,10 +1,15 @@
-var express = require('express');
-var moment = require('moment');
-var router = express.Router();
-var async = require('async');
-var Doctor = require('../../models/doctor');
-var Pacientes = require('../../models/paciente');
-var Consultas = require('../../models/consulta');
+const express = require('express');
+const moment = require('moment');
+const router = express.Router();
+const async = require('async');
+const algoliasearch = require('algoliasearch');
+const algolia = algoliasearch(
+  'MEZ3TXMHN8',
+  '944234e3bead982ceb2ab534d5a4cfa5'
+);
+const Doctor = require('../../models/doctor');
+const Pacientes = require('../../models/paciente');
+const Consultas = require('../../models/consulta');
 /* GET home page. */
 router.get('/', function(req, res, next) {
   if (req.user && req.user.profile.doc === true){
@@ -29,6 +34,14 @@ router.get('/', function(req, res, next) {
   }else {
     return res.redirect('/');
   }
+});
+
+router.get('/getToken', async (req, res) => {
+  var public_key = await algolia.generateSecuredApiKey(
+                      '89b9a2a470865ef255679c64161dcb34',
+                      {filters: `_tags:doctor_${req.query.id}`}
+                  );
+  res.json({'token':public_key});
 });
 
 router.post('/confirm', function(req, res, next){
@@ -83,11 +96,14 @@ router.get('/:id', function(req, res, next){
       .populate('consultas.consulta')
       .exec(function(err, Consulta){
         console.log(Consulta);
+        console.log(Consulta.consultas);
         if (err) next(err);
         return res.render('main/doctor/paciente', {
           Paciente: Consulta,
           moment: moment,
-          Consultas: Consulta.consultas,
+          // if (Consulta.consultas != null || '') {
+              Consultas: Consulta.consultas,
+          // }
           err: req.flash('err')
           });
         });

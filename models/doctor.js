@@ -14,7 +14,7 @@ var doctorSchema = Schema({
 					cedula_esp	:	{type:Number, unique: true},
 					universidad : String,
 					domicilio : String,
-					telefono : {type:Number, unique:true},
+					telefono : Number,
 					doc : {type:Boolean, default: true},
 	},
 	pacientes:[{
@@ -22,7 +22,7 @@ var doctorSchema = Schema({
 	}],
 	citados:[{
 			paciente: { type: Schema.Types.ObjectId, ref: 'Paciente' },
-			fecha: {type:Date, unique:true}
+			fecha: {type:Date}
 	}],
 	asistentes:[{
 		asistente: { type: Schema.Types.ObjectId, ref: 'Assistant' },

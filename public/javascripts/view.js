@@ -14,8 +14,27 @@ $('.datepicker').pickadate({
     max: true
   });
  $(document).ready(function(){
-   var client = algoliasearch('MEZ3TXMHN8', '89b9a2a470865ef255679c64161dcb34');
-     var index = client.initIndex('test_ExpedienteMed');
+   
+   $('#date').change(function(){
+    if ($('#date').val() == '' || null) {
+       $('#date').addClass('invalid');
+       $('#citar').prop( "disabled", true );
+     } else {
+       $('#date').removeClass('invalid');
+       $('#citar').prop( "disabled", false );
+     }
+   });
+
+   // API
+   var id = $('#id').val();
+   var client, index;
+
+   fetch(`/doctor/getToken?id=${id}`)
+   .then((token) => {
+        return token.json();
+   }).then(token => {
+     client = algoliasearch('MEZ3TXMHN8', token.token);
+     index = client.initIndex('test_ExpedienteMed');
      autocomplete('#search', { hint: false }, [
        {
          source: autocomplete.sources.hits(index, { hitsPerPage: 5 }),
@@ -29,6 +48,8 @@ $('.datepicker').pickadate({
      ]).on('autocomplete:selected', function(event, suggestion, dataset) {
        window.location.href = '/doctor/'+suggestion._id;
      });
+   });
+
 
      // the "href" attribute of .modal-trigger must specify the modal ID that wants to be triggered
      $('#nueva_cita').modal({
