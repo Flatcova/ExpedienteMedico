@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
         Pacientes: Pacientes.pacientes,
         Consultas: Pacientes.pacientes.consultas,
         moment : moment,
-        Dia : moment().format("DD/MMM/YY"),
+        Dia : moment().locale('es').format("L"),
         err: req.flash('err')
       });
     });
@@ -112,7 +112,7 @@ router.post('/', function(req, res, next){
       newPaciente.informacion.telefono_esposo = req.body.men_phone;
       newPaciente.informacion.recomendado = req.body.recomendation;
 
-      Paciente.findOne({'informacion.nombre' : req.body.name_wife }, function(err, existePaciente){
+      Paciente.findOne({'informacion.nombre_completo' : {$eq: req.body.name_wife+' '+req.body.apellido_wife},  }, function(err, existePaciente){
         if(existePaciente){
           req.flash('err', 'El paciente con este nombre ya esta registrado, verifique los datos.');
           return res.redirect('/assistant');
@@ -120,6 +120,7 @@ router.post('/', function(req, res, next){
           newPaciente.save(function(err, paciente){
             var client = algoliasearch('MEZ3TXMHN8', '944234e3bead982ceb2ab534d5a4cfa5');
             var index = client.initIndex('test_ExpedienteMed');
+            console.log('paciente registro: ', paciente);
             let pacienteToAlgolia = JSON.parse(JSON.stringify(paciente));
             pacienteToAlgolia['_tags'] = `doctor_${req.user.profile.doctor}`;
             console.log(pacienteToAlgolia);
@@ -137,11 +138,12 @@ router.post('/', function(req, res, next){
     },
     function (paciente){
       Doctor.findById(req.user.profile.doctor, function(err, doctor){
+        console.log("este es doctor: ", doctor);
         if (err) next(err);
-        console.log(paciente);
-        doctor.pacientes.push({
-          paciente: paciente._id
-        });
+        console.log("esete es paciente: ", paciente);
+        console.log(doctor.pacientes.length);
+        let count = (doctor.pacientes.length - 1);
+        doctor.pacientes.push({paciente: paciente._id})
         doctor.save(function(err){
           if (err) return next(err);
           return res.redirect('/assistant');

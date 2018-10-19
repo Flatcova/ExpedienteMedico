@@ -20,7 +20,7 @@ router.get('/', function(req, res, next) {
       .populate('asistentes.asistente')
       .exec(function(err, Pacientes){
         console.log(Pacientes);
-        console.log(Pacientes.asistentes[0].asistente.profile.nombre)
+        // console.log(Pacientes.asistentes[0].asistente.profile.nombre)
         if (err) next(err);
         return res.render('main/doctor/index', {
           Pacientes: Pacientes.citados,

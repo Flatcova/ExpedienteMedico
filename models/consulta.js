@@ -9,6 +9,8 @@ var ConsultaSchema = Schema({
           date: { type: Date, default: Date.now },
 	        Consulta: String
 	}
+},{
+    usePushEach: true
 });
 
 // create the model for users and expose it to our app

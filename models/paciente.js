@@ -10,7 +10,7 @@ var pacienteSchema = Schema({
 	        nombre_completo : String,
           edad : Number,
           cumpleanos : Date,
-	        correo : {type:String, unique: true},
+	        correo : {type:String},
           domicilio : String,
           telefono : Number,
           celular : Number,
@@ -31,6 +31,8 @@ var pacienteSchema = Schema({
   consultas: [{
 		consulta: { type: Schema.Types.ObjectId, ref: 'Consulta' },
 	}]
+},{
+    usePushEach: true
 });
 
 // create the model for users and expose it to our app

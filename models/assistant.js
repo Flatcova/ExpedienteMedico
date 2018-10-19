@@ -11,6 +11,8 @@ var assistantSchema = Schema({
 	        contrasena     : String,
 					doc : {type:Boolean, default: false},
 				}
+},{
+    usePushEach: true
 });
 
 // methods ======================

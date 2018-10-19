@@ -25,9 +25,10 @@
     <%}else {%>
       <li><a href="/doctor/<%= Paciente._id %>/nueva_consulta" class="waves-effect waves-light btn"><i class="material-icons">create_new_folder</i>Nueva Consulta</a></li>
     <%}%>
+    <h5>Consultas Anteriores:</h5>
     <% for(var i=Consultas.length-1; i >= 0 ; i--) { %>
     <li class="collection-item">
-      <span class="title">Consulta del: <%= moment(Consultas[i].consulta.diagnostico.date).format("DD-MMMM-YYYY") %></span>
+      <span class="title"><%= moment(Consultas[i].consulta.diagnostico.date).locale('es').format("LL") %></span>
       <a href="/doctor/<%= Paciente._id %>/<%= Consultas[i].consulta._id %>" class="secondary-content"><i class="material-icons">forward</i></a>
     </li>
     <% } %>

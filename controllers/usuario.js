@@ -17,8 +17,8 @@ exports.createUser = async (req, res) => {
   try {
     let doctor = await newDoc.save();
     let assitent = await agregarAssistant(doctor, req);
-    doctor.asistentes.push({ asistente: assitent._id });
-    await doctor.save();
+    console.log("assitente: ", assitent);
+    await doctor.update({$set:{asistentes: { asistente: assitent._id }} });
     req.logIn(doctor, function(err){
       if (err) return next(err);
       res.redirect('/');

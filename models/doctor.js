@@ -5,8 +5,9 @@ var Schema = mongoose.Schema;
 // define the schema for our user model
 var doctorSchema = Schema({
 	profile: {
+					fecha_creado: {type: Date, default: Date.now},
 	        nombre 	     : String,
-	        correo        : {type:String, unique: true},
+	        correo        : String,
 	        contrasena     : String,
 					nombre_consultorio : String,
 					especialidad : String,
@@ -27,6 +28,8 @@ var doctorSchema = Schema({
 	asistentes:[{
 		asistente: { type: Schema.Types.ObjectId, ref: 'Assistant' },
 	}]
+},{
+    usePushEach: true
 });
 
 // methods ======================
